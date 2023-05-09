@@ -18,7 +18,7 @@ namespace GXPEngine.Fire
         Vec2 max;
         Vec2 min;
 
-        public HeatCollider(GameObject owner, HeatComponent heatComponent, params string[] args) : base(owner, args)
+        public HeatCollider(GameObject owner, HeatComponent heatComponent, params string[] args)
         {
             heat = heatComponent;
 

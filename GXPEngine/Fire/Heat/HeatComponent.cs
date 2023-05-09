@@ -16,23 +16,23 @@ namespace GXPEngine.Fire
 
         bool burning;
 
-        public HeatComponent(GameObject owner, float materialThreshold) : base(owner)
+        public HeatComponent(GameObject owner, float materialThreshold)
         {
 
             colliderChild = new HeatCollider(owner, this, new string[1]);
 
-            if (owner.Collider is PolygonCollider)
-            {
-                burnThreshold = materialThreshold * FindPolygonSurf(owner.Collider as PolygonCollider);
-            }
-            else if(owner.Collider is CircleCollider) 
-            {
-                burnThreshold = materialThreshold * ((owner.Collider as CircleCollider).Radius * (owner.Collider as CircleCollider).Radius * Mathf.PI);
-            }
+            //if (owner.Collider is PolygonCollider)
+            //{
+            //    burnThreshold = materialThreshold * FindPolygonSurf(owner.Collider as PolygonCollider);
+            //}
+            //else if(owner.Collider is CircleCollider) 
+            //{
+            //    burnThreshold = materialThreshold * ((owner.Collider as CircleCollider).Radius * (owner.Collider as CircleCollider).Radius * Mathf.PI);
+            //}
 
         }
 
-        new void Update()
+        void Update()
         {
             if (burning)
             {
@@ -42,26 +42,26 @@ namespace GXPEngine.Fire
         }
 
 
-        float FindPolygonSurf(PolygonCollider collider)
-        {
-            Vec2[] points = collider.Points;
+        //float FindPolygonSurf(PolygonCollider collider)
+        //{
+        //    Vec2[] points = collider.Points;
 
-            float minx = float.MaxValue;
-            float miny = float.MaxValue;
-            float maxx = float.MinValue;
-            float maxy = float.MinValue;
+        //    float minx = float.MaxValue;
+        //    float miny = float.MaxValue;
+        //    float maxx = float.MinValue;
+        //    float maxy = float.MinValue;
 
-            for (int i = 0; i < points.Length; i++)
-            {
-                if (points[i].x < minx) minx = points[i].x;
-                if (points[i].y < miny) miny = points[i].y;
-                if (points[i].x > maxx) maxx = points[i].x;
-                if (points[i].y > maxy) maxy = points[i].y;
-            }
+        //    for (int i = 0; i < points.Length; i++)
+        //    {
+        //        if (points[i].x < minx) minx = points[i].x;
+        //        if (points[i].y < miny) miny = points[i].y;
+        //        if (points[i].x > maxx) maxx = points[i].x;
+        //        if (points[i].y > maxy) maxy = points[i].y;
+        //    }
 
-            return (maxx - minx) * (maxy - maxx);
+        //    return (maxx - minx) * (maxy - maxx);
 
-        }
+        //}
 
 
     }
