@@ -88,6 +88,8 @@
     <Compile Include="GXPEngine\FMOD\FMODSoundSystem.cs" />
     <Compile Include="GXPEngine\SoLoud\Soloud.cs" />
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
+    <Compile Include="Scenes\Button.cs" />
+    <Compile Include="Scenes\Scene.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
