@@ -1,4 +1,5 @@
 ﻿using GXPEngine;
+using GXPEngine.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,16 +7,18 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-public class PhysicsObject : GameObject
+public class PhysicsObject : Sprite
 {
+    public EasyDraw draw;
     public Vec2 position;
     public float restitution;
     public Vec2 velocity;
     public float mass;
     public float inverseMass;
 
-    public PhysicsObject(float restitution, float mass)
+    public PhysicsObject(float restitution, float mass, Vec2 pos) : base("Checkers.png")
     {
+        position = pos;
         this.restitution = restitution;
         this.mass = mass;
         if (mass == 0)
@@ -28,25 +31,18 @@ public class PhysicsObject : GameObject
         }
     }
 
-    void ResolveCollision(CollisionData data)
+    public void Update()
     {
-        // Calculate relative velocity 
-        Vec2 rv = data.b.velocity - data.a.velocity;
-        // Calculate relative velocity in terms of the normal direction 
-        float velAlongNormal = Vec2.Dot(rv, data.normal);
-        // Do not resolve if velocities are separating 
-        if (velAlongNormal > 0)
-            return;
-        // Calculate restitution 
-        float e = Mathf.Min(data.a.restitution, data.b.restitution);
-        // Calculate impulse scalar 
-        float j = -(1 + e) * velAlongNormal;
-        j /= data.a.inverseMass + data.b.inverseMass;
-        // Apply impulse 
-        Vec2 impulse = j * data.normal;
-        data.a.velocity -= data.a.inverseMass * impulse;
-        data.b.velocity += data.b.inverseMass * impulse;
+        Draw();
+        SetXY(position.x, position.y);
     }
+
+    public virtual void Draw()
+    {
+
+    }
+
+
 
     void PositionalCorrection(CollisionData data)
     {

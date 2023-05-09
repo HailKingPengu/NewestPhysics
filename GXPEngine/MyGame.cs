@@ -2,11 +2,11 @@ using System;                                   // System contains a lot of defa
 using GXPEngine;                                // GXPEngine contains the engine
 using System.Drawing;                           // System.Drawing contains drawing tools such as Color definitions
 
-public class Boids : Game
+public class MyGame : Game
 {
     EasyDraw canvas;
 
-    public Boids() : base(1920, 1080, true)
+    public MyGame() : base(800, 600, false)
     {     // Create a window that's 800x600 and NOT fullscreen
 
         // Draw some things on a canvas:
@@ -19,20 +19,24 @@ public class Boids : Game
         canvas.TextAlign(CenterMode.Center, CenterMode.Center);
         canvas.Text("Welcome!", width / 2, height / 2);
 
+        AddChild(new AABB(0.1f, 10, new Vec2(100, 90), new Vec2(10, 10)));
+        AddChild(new AABB(0.2f, 20, new Vec2(100, 150), new Vec2(20,20)));
+
         // Add the canvas to the engine to display it:
-        AddChild(canvas);
+        //AddChild(canvas);
         Console.WriteLine("MyGame initialized");
     }
 
     // For every game object, Update is called every frame, by the engine:
     void Update()
     {
-        canvas.Clear(Color.Black);
+        //canvas.Clear(Color.Black);
 
     }
 
     static void Main()                          // Main() is the first method that's called when the program is run
     {
-        new Boids().Start();
+
+        new MyGame().Start();
     }
 }

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fire\Physics\CollisionData.cs" />
+    <Compile Include="Fire\Physics\PhysicsManager.cs" />
     <Compile Include="Fire\Physics\Structs.cs" />
     <Compile Include="Fire\Physics\PhysicsObject.cs" />
     <Compile Include="Fire\Physics\Vec2.cs" />
