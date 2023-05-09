@@ -40,11 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fire\Heat\HeatCollider.cs" />
-    <Compile Include="Fire\Heat\HeatComponent.cs" />
-    <Compile Include="Fire\Physics\CollsionData.cs" />
-    <Compile Include="Fire\Physics\PhysicsObject.cs" />
+    <Compile Include="Fire\Physics\CollisionData.cs" />
     <Compile Include="Fire\Physics\Structs.cs" />
+    <Compile Include="Fire\Physics\PhysicsObject.cs" />
     <Compile Include="Fire\Physics\Vec2.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />
