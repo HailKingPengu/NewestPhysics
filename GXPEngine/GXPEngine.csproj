@@ -87,6 +87,6 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Fire\" />
+    <Folder Include="Fire\Heat\" />
   </ItemGroup>
 </Project>
