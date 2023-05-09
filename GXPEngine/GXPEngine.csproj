@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fire\Heat\HeatCollider.cs" />
+    <Compile Include="Fire\Heat\HeatComponent.cs" />
     <Compile Include="Fire\Physics\CollisionData.cs" />
     <Compile Include="Fire\Physics\Structs.cs" />
     <Compile Include="Fire\Physics\PhysicsObject.cs" />
