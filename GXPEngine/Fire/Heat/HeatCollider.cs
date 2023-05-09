@@ -18,6 +18,8 @@ namespace GXPEngine.Fire
         Vec2 max;
         Vec2 min;
 
+        float extraY;
+
         public HeatCollider(GameObject owner, HeatComponent heatComponent, params string[] args)
         {
             heat = heatComponent;
@@ -25,6 +27,8 @@ namespace GXPEngine.Fire
             max = center + size;
             min = center - size;
         }
+
+        //extraY = -0.02 (x-4.15)^(4)+6;
 
         public void Collide(List<HeatCollider> colliders)
         {
