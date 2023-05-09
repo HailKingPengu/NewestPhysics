@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace GXPEngine.Fire
 {
-    public class HeatComponent : Component
+    public class HeatComponent
     {
 
         HeatCollider colliderChild;
@@ -47,10 +46,10 @@ namespace GXPEngine.Fire
         {
             Vec2[] points = collider.Points;
 
-            float minx = Mathf.Infinity;
-            float miny = Mathf.Infinity;
-            float maxx = -Mathf.Infinity;
-            float maxy = -Mathf.Infinity;
+            float minx = float.MaxValue;
+            float miny = float.MaxValue;
+            float maxx = float.MinValue;
+            float maxy = float.MinValue;
 
             for (int i = 0; i < points.Length; i++)
             {

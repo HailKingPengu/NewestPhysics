@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Boid.cs" />
+    <Compile Include="Fire\Heat\HeatCollider.cs" />
+    <Compile Include="Fire\Heat\HeatComponent.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />
     <Compile Include="GXPEngine\AddOns\TiledLoader.cs" />
@@ -86,7 +88,5 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Fire\Heat\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

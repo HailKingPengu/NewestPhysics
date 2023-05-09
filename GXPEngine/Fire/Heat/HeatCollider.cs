@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GXPEngine.Fire
 {
-    public class HeatCollider : Collider
+    public class HeatCollider
     {
 
         GameObject owner;
