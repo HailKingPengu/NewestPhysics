@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GXPEngine;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -7,13 +8,10 @@ using System.Threading.Tasks;
 
 public class PhysicsScene
 {
-    public PhysicsScene(float dt, int iterations)
+    public PhysicsScene(int iterations)
     {
-        m_dt = dt;
         m_iterations = iterations;
     }
-
-    float m_dt;
     int m_iterations;
     List<Body> bodies;
     List<Manifold> contacts;
@@ -60,7 +58,7 @@ public class PhysicsScene
 
         // Integrate forces
         for (int i = 0; i < bodies.Count(); ++i)
-            IntegrateForces(bodies[i], m_dt);
+            IntegrateForces(bodies[i], Time.deltaTime);
 
         // Initialize collision
         for (int i = 0; i < contacts.Count(); ++i)
@@ -73,7 +71,7 @@ public class PhysicsScene
 
         // Integrate velocities
         for (int i = 0; i < bodies.Count(); ++i)
-            IntegrateVelocity(bodies[i], m_dt);
+            IntegrateVelocity(bodies[i], Time.deltaTime);
 
         // Correct positions
         for (int i = 0; i < contacts.Count(); ++i)

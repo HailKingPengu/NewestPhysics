@@ -43,6 +43,9 @@ public class Circle : Shape
     public Circle(float r) : base("Circle.png")
     {
         radius = r;
+        width = 2 * (int)r;
+        height = 2 * (int)r;
+
     }
 
     public override Shape Clone()
