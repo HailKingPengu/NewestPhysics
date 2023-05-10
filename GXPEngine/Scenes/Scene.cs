@@ -40,6 +40,7 @@ namespace GXPEngine.Scenes
         public void AddGame(GameInstance gameInstance)
         {
             game = gameInstance;
+            AddChildAt(game, 1000);
         }
 
         void Update()

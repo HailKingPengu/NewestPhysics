@@ -33,15 +33,21 @@ namespace GXPEngine.GameInst
 
             groundCheck = new EasyDraw(width - 1, 10);
             AddChild(groundCheck);
+            groundCheck.Clear(125);
             groundCheck.SetOrigin(groundCheck.width / 2, groundCheck.height / 2);
             groundCheck.SetXY(0, height / 2);
 
             ceilingCheck = new EasyDraw(width - 1, 10);
             AddChild(ceilingCheck);
+            ceilingCheck.Clear(125);
             ceilingCheck.SetOrigin(ceilingCheck.width / 2, ceilingCheck.height / 2);
             ceilingCheck.SetXY(0, -height / 2);
 
             SetCycle(4, 4, 8);
+
+            Sprite placeholderImg = new Sprite("doof.png", false, false);
+            placeholderImg.scale = 0.2f;
+            AddChild(placeholderImg);
         }
 
         public void setMovementValues(float gravity, float movementForce, float jumpForce)
@@ -51,14 +57,14 @@ namespace GXPEngine.GameInst
             this.jumpForce = jumpForce;
         }
 
-        public void UpdateGeneral(float camY)
+        public void UpdateGeneral()
         {
 
-            if (groundCheck.GetCollisions(false).Length > 1 && groundCheck.GetCollisions(false)[0].y != 0)
+            if (groundCheck.GetCollisions(false).Length > 1)
             {
                 grounded = true;
 
-                y = groundCheck.GetCollisions(false)[0].y - groundCheck.y;
+                //y = groundCheck.GetCollisions(false)[0].y - groundCheck.y;
                 //y = groundCheck.GetCollisions(false)[0].y - groundCheck.y - (Convert.ToInt32(camY / tileSize) * tileSize) - tileSize / 2;
             }
             else
@@ -66,14 +72,14 @@ namespace GXPEngine.GameInst
                 grounded = false;
             }
 
-            //Console.WriteLine(grounded);
+            Console.WriteLine(groundCheck.GetCollisions(false).Length);
 
-            if (ceilingCheck.GetCollisions(false).Length > 1)
-            {
-                y += ceilingCheck.height / 2;
-                y += velocityY;
-                velocityY = 0;
-            }
+            //if (ceilingCheck.GetCollisions(false).Length > 1)
+            //{
+            //    y += ceilingCheck.height / 2;
+            //    y += velocityY;
+            //    velocityY = 0;
+            //}
 
 
 
@@ -135,7 +141,7 @@ namespace GXPEngine.GameInst
             }
 
 
-            AnimateFixed();
+            //AnimateFixed();
         }
 
     }

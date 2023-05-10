@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GXPEngine.GameInst;
 
 namespace GXPEngine.Scenes
 {
@@ -23,6 +24,7 @@ namespace GXPEngine.Scenes
             scenes.Add(new Scene());
             scenes[1].AddButton(new Button(new Vec2(400, 300), new Vec2(200, 50), Color.White, "WAAAAA", 0, 0, sceneManager));
             scenes[1].AddBackground(new Sprite("background2.jpg"), screenSize);
+            scenes[1].AddGame(new GameInstance());
             scenes[1].isActive = true;
 
             //settings
