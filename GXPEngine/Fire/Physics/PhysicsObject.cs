@@ -10,13 +10,24 @@ using System.Threading.Tasks;
 public class PhysicsObject : Sprite
 {
     public EasyDraw draw;
-    public Vec2 position;
+    public Vec2 position
+    {
+        get
+        {
+            return new Vec2(x, y);
+        }
+        set
+        {
+            x = value.x;
+            y = value.y;
+        }
+    }
     public float restitution;
     public Vec2 velocity;
     public float mass;
     public float inverseMass;
 
-    public PhysicsObject(float restitution, float mass, Vec2 pos) : base("Checkers.png")
+    public PhysicsObject(float restitution, float mass, Vec2 pos, string fileName) : base(fileName)
     {
         position = pos;
         this.restitution = restitution;
@@ -34,7 +45,12 @@ public class PhysicsObject : Sprite
     public void Update()
     {
         Draw();
-        SetXY(position.x, position.y);
+        Move();
+    }
+
+    void Move()
+    {
+        position += velocity;
     }
 
     public virtual void Draw()

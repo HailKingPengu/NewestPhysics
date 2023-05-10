@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 public class PhysicsManager
 {
-    List<CollisionData> collisions;
+    List<CollisionData> collisions = new List<CollisionData>();
 
     public void Step()
     {
+        collisions.Clear();
         CheckAllCollisions();
+        ResolveCollisions();
     }
 
     private void CheckAllCollisions()
@@ -28,6 +30,7 @@ public class PhysicsManager
 
     void ResolveCollision(CollisionData data)
     {
+        Console.WriteLine("RESOLVE");
         // Calculate relative velocity 
         Vec2 rv = data.b.velocity - data.a.velocity;
         // Calculate relative velocity in terms of the normal direction 
@@ -46,25 +49,58 @@ public class PhysicsManager
         data.b.velocity += data.b.inverseMass * impulse;
     }
 
+    void ResolveCollisions()
+    {
+        CollisionData earliest;
+        foreach (CollisionData data in collisions)
+        {
+            ResolveCollision(data);
+        }
+    }
+
     void Check(PhysicsObject a, PhysicsObject b)
     {
-        CollisionData data;
+        CollisionData data = new CollisionData();
+        CollisionData collision = new CollisionData();
+        collision.isEmpty = true;
         if (a is Circle CCa && b is Circle CCb)
         {
-            CirclevsCircle(CCa, CCb, out data);
+            if (CirclevsCircle(CCa, CCb, out data))
+            {
+                collision = data;
+                collision.isEmpty = false;
+            }
         }
         else if (a is AABB AAa && b is AABB AAb)
         {
-            AABBvsAABB(AAa, AAb, out data);
+            if (AABBvsAABB(AAa, AAb, out data))
+            {
+                collision = data;
+                collision.isEmpty = false;
+            }
         }
         else if(a is AABB ACa && b is Circle ACb)
         {
-            AABBvsCircle(ACa, ACb, out data);
+            if (AABBvsCircle(ACa, ACb, out data))
+            {
+                collision = data;
+                collision.isEmpty = false;
+            }
         }
         else if(a is Circle CAa && b is AABB CAb)
         {
-            AABBvsCircle(CAb, CAa, out data);
+            if (AABBvsCircle(CAb, CAa, out data))
+            {
+                collision = data;
+                collision.isEmpty = false;
+            }
         }
+        else
+        {
+
+        }
+        if(!collision.isEmpty)collisions.Add(collision);
+        
     }
 
     bool CirclevsCircle(Circle A, Circle B, out CollisionData data)
@@ -129,7 +165,7 @@ public class PhysicsManager
             if (y_overlap > 0)
             {
                 // Find out which axis is axis of least penetration 
-                if (x_overlap > y_overlap)
+                if (x_overlap < y_overlap)
                 {
                     // Point towards B knowing that n points from A to B 
                     if (n.x < 0)
