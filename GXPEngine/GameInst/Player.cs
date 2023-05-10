@@ -45,7 +45,7 @@ namespace GXPEngine.GameInst
 
             SetCycle(4, 4, 8);
 
-            Sprite placeholderImg = new Sprite("doof.png", false, false);
+            Sprite placeholderImg = new Sprite("Assets/doof.png", false, false);
             placeholderImg.scale = 0.2f;
             AddChild(placeholderImg);
         }

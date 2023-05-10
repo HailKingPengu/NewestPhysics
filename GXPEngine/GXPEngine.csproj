@@ -106,5 +106,10 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Assets\Background1.png" />
+    <Content Include="Assets\Background2.jpg" />
+    <Content Include="Assets\Background3.gif" />
+    <Content Include="Assets\doof.png" />
+  </ItemGroup>
 </Project>
