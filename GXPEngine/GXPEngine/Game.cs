@@ -17,9 +17,6 @@ namespace GXPEngine
 
 		private UpdateManager _updateManager;
 		private CollisionManager _collisionManager;
-		private PhysicsManager _physicsManager;
-
-		public List<PhysicsObject> physicsObjects;
 
 		/// <summary>
 		/// Step delegate defines the signature of a method used for step callbacks, see OnBeforeStep, OnAfterStep.
@@ -111,13 +108,11 @@ namespace GXPEngine
 			if (main != null) {
 				throw new Exception ("Only a single instance of Game is allowed");
 			} else {
-				physicsObjects = new List<PhysicsObject>();
 
 
 				main = this;
 				_updateManager = new UpdateManager ();
 				_collisionManager = new CollisionManager ();
-				_physicsManager = new PhysicsManager ();
 				_glContext = new GLContext (this);
 				_glContext.CreateWindow (pWidth, pHeight, pFullScreen, pVSync, pRealWidth, pRealHeight);
 
@@ -191,7 +186,6 @@ namespace GXPEngine
 				OnBeforeStep ();
 			_updateManager.Step ();
 			_collisionManager.Step ();
-			_physicsManager.Step ();
 			if (OnAfterStep != null)
 				OnAfterStep ();
 		}
