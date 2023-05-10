@@ -47,8 +47,8 @@
     <Compile Include="Fire\Physics\Structs.cs" />
     <Compile Include="Fire\Physics\PhysicsObject.cs" />
     <Compile Include="Fire\Physics\Vec2.cs" />
-    <Compile Include="GameInstance\GameInstance.cs" />
-    <Compile Include="GameInstance\Player.cs" />
+    <Compile Include="GameInst\GameInstance.cs" />
+    <Compile Include="GameInst\Player.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />
     <Compile Include="GXPEngine\AddOns\TiledLoader.cs" />

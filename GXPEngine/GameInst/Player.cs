@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GXPEngine.GameInstance
+namespace GXPEngine.GameInst
 {
     internal class Player : AnimationSprite
     {
