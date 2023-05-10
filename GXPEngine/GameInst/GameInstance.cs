@@ -8,8 +8,10 @@ namespace GXPEngine.GameInst
 {
     internal class GameInstance : Pivot
     {
-
+        int initTicks = 10;
         bool paused;
+
+        PhysicsScene physicsScene;
 
         Player player;
 
@@ -22,9 +24,26 @@ namespace GXPEngine.GameInst
         public GameInstance() 
         {
 
+            physicsScene = new PhysicsScene(10);
+            var b = physicsScene.Add(new PolygonShape(50, 50), 230, 200);
+            AddChild(b);
+            //b.SetStatic();
 
+            var a = physicsScene.Add(new PolygonShape(50, 50), 200, 500);
 
+            AddChild(a);
 
+            a.SetStatic();
+
+            //var c = physicsScene.Add(new Circle(50), 230, 200);
+            //AddChild(c);
+            ////b.SetStatic();
+
+            //var d = physicsScene.Add(new Circle(50), 200, 500);
+
+            //AddChild(d);
+
+            //d.SetStatic();
 
             //EasyDraw testcube = new EasyDraw(1000, 200);
             //testcube.SetXY(0, 600);
@@ -37,6 +56,12 @@ namespace GXPEngine.GameInst
 
         void Update()
         {
+            if (initTicks > 0)
+            {
+                initTicks -= 1;
+                return;
+            }
+            physicsScene.Step();
             //if (!paused)
             //{
             //    player.UpdateGeneral();

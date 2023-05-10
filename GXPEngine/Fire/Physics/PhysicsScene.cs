@@ -11,6 +11,8 @@ public class PhysicsScene
     public PhysicsScene(int iterations)
     {
         m_iterations = iterations;
+        bodies = new List<Body>();
+        contacts = new List<Manifold>();
     }
     int m_iterations;
     List<Body> bodies;
@@ -49,10 +51,10 @@ public class PhysicsScene
                 Body B = bodies[j];
                 if (A.im == 0 && B.im == 0)
                     continue;
-                Manifold m = new Manifold(A, B );
+                Manifold m = new Manifold(A, B);
                 m.Solve();
                 if (m.contact_count > 0)
-                    contacts.Append(m);
+                    contacts.Add(m);
             }
         }
 
@@ -71,7 +73,7 @@ public class PhysicsScene
 
         // Integrate velocities
         for (int i = 0; i < bodies.Count(); ++i)
-            IntegrateVelocity(bodies[i], Time.deltaTime);
+            IntegrateVelocity(bodies[i], Time.deltaTime / 1000f);
 
         // Correct positions
         for (int i = 0; i < contacts.Count(); ++i)
@@ -84,6 +86,13 @@ public class PhysicsScene
             b.force = new Vec2(0, 0);
             b.torque = 0;
         }
+
+        for (int i = 0; i < bodies.Count(); ++i)
+        {
+            Body b = bodies[i];
+            b.shape.Draw();
+        }
+
     }
 
     //void Render()
@@ -127,10 +136,10 @@ public class PhysicsScene
     //    glEnd();
     //}
 
-    Body Add(Shape shape, int x, int y)
+    public Body Add(Shape shape, int x, int y)
     {
         Body b = new Body(shape, x, y);
-        bodies.Append(b);
+        bodies.Add(b);
         return b;
     }
 }

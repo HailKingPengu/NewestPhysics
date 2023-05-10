@@ -11,19 +11,19 @@ public class Collision
 
     public static void Dispatch(Manifold m, Body a, Body b)
     {
-        if(a.GetShapeType() is Shape.ShapeType.eCircle && b.GetShapeType() is Shape.ShapeType.eCircle)
+        if(a.shape.GetShapeType() is Shape.ShapeType.eCircle && b.shape.GetShapeType() is Shape.ShapeType.eCircle)
         {
             CircletoCircle(m, a, b);
         }
-        else if (a.GetShapeType() is Shape.ShapeType.eCircle && b.GetShapeType() is Shape.ShapeType.ePoly)
+        else if (a.shape.GetShapeType() is Shape.ShapeType.eCircle && b.shape.GetShapeType() is Shape.ShapeType.ePoly)
         {
             CircletoPolygon(m, a, b);
         }
-        else if (a.GetShapeType() is Shape.ShapeType.ePoly && b.GetShapeType() is Shape.ShapeType.eCircle)
+        else if (a.shape.GetShapeType() is Shape.ShapeType.ePoly && b.shape.GetShapeType() is Shape.ShapeType.eCircle)
         {
             PolygontoCircle(m, a, b);
         }
-        else if (a.GetShapeType() is Shape.ShapeType.ePoly && b.GetShapeType() is Shape.ShapeType.ePoly)
+        else if (a.shape.GetShapeType() is Shape.ShapeType.ePoly && b.shape.GetShapeType() is Shape.ShapeType.ePoly)
         {
             PolygontoPolygon(m, a, b);
         }

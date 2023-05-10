@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 public class Manifold
 {
-    const float gravityScale = 5.0f;
+    const float gravityScale = 0.5f;
     public static Vec2 gravity = new Vec2( 0, 10.0f * gravityScale );
     public Manifold(Body a, Body b)
     {
