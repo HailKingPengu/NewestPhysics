@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GXPEngine.GameInst;
 
 namespace GXPEngine.Scenes
 {
@@ -11,6 +12,11 @@ namespace GXPEngine.Scenes
         //scene stuff, you know
 
         public List<Button> buttons;
+        public Sprite bgImage;
+
+        public bool isActive;
+
+        public GameInstance game;
 
         public Scene()
         {
@@ -23,12 +29,28 @@ namespace GXPEngine.Scenes
             AddChild(button);
         }
 
+        public void AddBackground(Sprite image, Vec2 screenSize)
+        {
+            bgImage = image;
+            bgImage.width = (int)screenSize.x;
+            bgImage.height = (int)screenSize.y;
+            AddChildAt(bgImage, 0);
+        }
+
+        public void AddGame(GameInstance gameInstance)
+        {
+            game = gameInstance;
+        }
+
         void Update()
         {
-            foreach(Button button in buttons)
+            if (isActive)
+            {
+                foreach (Button button in buttons)
             {
                 button.DoMouseCheck(Input.mouseX, Input.mouseY);
             }
         }
     }
+}
 }
