@@ -78,6 +78,15 @@ public struct Vec2
     public void Normalize() => this = length == 0 ? this : this * Mathf.Pow(length, -1);
     public static Vec2 Lerp(Vec2 origin, Vec2 destination, float factor) => ((1 - factor) * origin) + (factor * destination);
     public static float Cross(Vec2 a, Vec2 b) => (a.x * b.normalized.y) - (a.y * b.normalized.x);
+    public static Vec2 Cross(Vec2 v, float a)
+    {
+        return new Vec2(a * v.y, -a * v.x);
+    }
+
+    public static Vec2 Cross(float a, Vec2 v)
+    {
+        return new Vec2(-a * v.y, a * v.x);
+    }
     public static float Dot(Vec2 a, Vec2 b) => (a.x * b.normalized.x) + (a.y * b.normalized.y);
     public static float Distance(Vec2 a, Vec2 b) => Mathf.Sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y));
     public override string ToString() => $"( {x} ; {y} )";

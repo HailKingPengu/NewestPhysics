@@ -18,44 +18,47 @@ public class MyGame : Game
 
         scenes = new List<Scene>();
         // Draw some things on a canvas:
-        canvas = new EasyDraw(1920, 1080);
-        canvas.Clear(Color.MediumPurple);
+        //canvas = new EasyDraw(1920, 1080);
+        //canvas.Clear(Color.MediumPurple);
         //canvas.Fill(Color.Yellow);
         //canvas.Ellipse(width / 2, height / 2, 200, 200);
         //canvas.Fill(50);
         //canvas.TextSize(32);
         //canvas.TextAlign(CenterMode.Center, CenterMode.Center);
         //canvas.Text("Welcome!", width / 2, height / 2);
-        AddChild(a);
-        a.velocity = new Vec2(-1, 0);
-        //var b = new AABB(0.2f, 20, new Vec2(200, 200), new Vec2(100, 100));
-        var b = new Circle(0.2f, 20, new Vec2(100, 200), 100);
-        AddChild(b);
-        AddChild(canvas);
-        var a = new AABB(0.1f, 10, new Vec2(400, 200), new Vec2(100, 200));
-
         scenes.Add(new Scene());
-        scenes[0].AddButton(new Button(new Vec2(400, 300), new Vec2(200, 50), Color.White, "gaming", 0, 0));
-        scenes[0].AddButton(new Button(new Vec2(150, 300), new Vec2(200, 50), Color.White, "gaming", 0, 0));
-        scenes[0].AddButton(new Button(new Vec2(650, 300), new Vec2(200, 50), Color.White, "gaming", 0, 0));
-        physicsObjects.Add(a);
-        physicsObjects.Add(b);
+        var background = new EasyDraw(Settings.ScreenResolutionX, Settings.ScreenResolutionY);
+        background.Clear(Color.Green);
+        scenes[0].AddChild(background);
+        //var a = new AABB(Material.Wood, 10, new Vec2(400, 200), new Vec2(100, 200));
+        //scenes[0].AddChild(a);
+        //a.velocity = new Vec2(-20, 0);
+        //var b = new AABB(Material.Wood, 20, new Vec2(200, 200), new Vec2(100, 100));
+        //var b = new Circle(0.2f, 20, new Vec2(100, 200), 100);
+        //scenes[0].AddChild(b);
+        //AddChild(canvas);
 
-        scenes[0].AddButton(new Button(new Vec2(400, 150), new Vec2(200, 50), Color.White, "gaming", 0, 0));
-        scenes[0].AddButton(new Button(new Vec2(150, 150), new Vec2(200, 50), Color.White, "gaming", 0, 0));
-        scenes[0].AddButton(new Button(new Vec2(650, 150), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(400, 300), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(150, 300), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(650, 300), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //physicsObjects.Add(a);
+        //physicsObjects.Add(b);
 
-        scenes[0].AddButton(new Button(new Vec2(400, 450), new Vec2(200, 50), Color.White, "gaming", 0, 0));
-        scenes[0].AddButton(new Button(new Vec2(150, 450), new Vec2(200, 50), Color.White, "gaming", 0, 0));
-        scenes[0].AddButton(new Button(new Vec2(650, 450), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(400, 150), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(150, 150), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(650, 150), new Vec2(200, 50), Color.White, "gaming", 0, 0));
 
-        scenes[0].AddButton(new Button(new Vec2(400, 225), new Vec2(200, 50), Color.White, "gaming", 0, 0));
-        scenes[0].AddButton(new Button(new Vec2(150, 225), new Vec2(200, 50), Color.White, "gaming", 0, 0));
-        scenes[0].AddButton(new Button(new Vec2(650, 225), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(400, 450), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(150, 450), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(650, 450), new Vec2(200, 50), Color.White, "gaming", 0, 0));
 
-        scenes[0].AddButton(new Button(new Vec2(400, 375), new Vec2(200, 50), Color.White, "gaming", 0, 0));
-        scenes[0].AddButton(new Button(new Vec2(150, 375), new Vec2(200, 50), Color.White, "gaming", 0, 0));
-        scenes[0].AddButton(new Button(new Vec2(650, 375), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(400, 225), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(150, 225), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(650, 225), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+
+        //scenes[0].AddButton(new Button(new Vec2(400, 375), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(150, 375), new Vec2(200, 50), Color.White, "gaming", 0, 0));
+        //scenes[0].AddButton(new Button(new Vec2(650, 375), new Vec2(200, 50), Color.White, "gaming", 0, 0));
 
         AddChild(scenes[currentScene]);
 

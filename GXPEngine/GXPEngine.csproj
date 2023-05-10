@@ -36,16 +36,23 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fire\Heat\HeatCollider.cs" />
     <Compile Include="Fire\Heat\HeatComponent.cs" />
-    <Compile Include="Fire\Physics\CollisionData.cs" />
-    <Compile Include="Fire\Physics\PhysicsManager.cs" />
-    <Compile Include="Fire\Physics\Structs.cs" />
-    <Compile Include="Fire\Physics\PhysicsObject.cs" />
+    <Compile Include="Fire\Physics\Body.cs" />
+    <Compile Include="Fire\Physics\Collision.cs" />
+    <Compile Include="Fire\Physics\Manifold.cs" />
+    <Compile Include="Fire\Physics\Mat2.cs" />
+    <Compile Include="Fire\Physics\Old\CollisionData.cs" />
+    <Compile Include="Fire\Physics\Old\PhysicsManager.cs" />
+    <Compile Include="Fire\Physics\PhysicsScene.cs" />
+    <Compile Include="Fire\Physics\Shape.cs" />
+    <Compile Include="Fire\Physics\Old\Structs.cs" />
+    <Compile Include="Fire\Physics\Old\PhysicsObject.cs" />
     <Compile Include="Fire\Physics\Vec2.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />

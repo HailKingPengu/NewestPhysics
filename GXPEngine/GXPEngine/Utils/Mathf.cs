@@ -7,10 +7,17 @@ namespace GXPEngine
 	/// </summary>
 	public static class Mathf
 	{
-		/// <summary>
-		/// Constant PI
-		/// </summary>
-		public const float PI = (float)Math.PI;
+
+        public static float NextFloat(float min, float max)
+        {
+            System.Random random = new System.Random();
+            double val = (random.NextDouble() * (max - min) + min);
+            return (float)val;
+        }
+        /// <summary>
+        /// Constant PI
+        /// </summary>
+        public const float PI = (float)Math.PI;
 
 		/// <summary>
 		/// Returns the absolute value of specified number
@@ -205,6 +212,8 @@ namespace GXPEngine
 		public static float Clamp(float f, float min, float max) {
 			return f < min ? min : (f > max ? max : f);
 		}
+
+		
 
 	}
 }
