@@ -47,6 +47,8 @@
     <Compile Include="Fire\Physics\Structs.cs" />
     <Compile Include="Fire\Physics\PhysicsObject.cs" />
     <Compile Include="Fire\Physics\Vec2.cs" />
+    <Compile Include="GameInstance\GameInstance.cs" />
+    <Compile Include="GameInstance\Player.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />
     <Compile Include="GXPEngine\AddOns\TiledLoader.cs" />
@@ -88,8 +90,11 @@
     <Compile Include="GXPEngine\FMOD\FMODSoundSystem.cs" />
     <Compile Include="GXPEngine\SoLoud\Soloud.cs" />
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
+    <Compile Include="SceneManager.cs" />
     <Compile Include="Scenes\Button.cs" />
+    <Compile Include="Scenes\OverlayScene.cs" />
     <Compile Include="Scenes\Scene.cs" />
+    <Compile Include="Scenes\SceneBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
