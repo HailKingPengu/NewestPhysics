@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Volatile;
 
 namespace GXPEngine.GameInst
 {
@@ -11,7 +12,7 @@ namespace GXPEngine.GameInst
         int initTicks = 10;
         public bool paused;
 
-        PhysicsScene physicsScene;
+        VoltWorld physicsWorld;
 
         Player player;
 
@@ -24,22 +25,24 @@ namespace GXPEngine.GameInst
         public GameInstance() 
         {
 
-            physicsScene = new PhysicsScene(10);
-            var b = physicsScene.Add(new PolygonShape(50, 50), 230, 200);
-            AddChild(b);
-            //b.SetStatic();
+            physicsWorld = new VoltWorld();
+            var a = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
+            AddChild(physicsWorld.CreateDynamicBody(new Vec2(100, 100), 0, new VoltShape[] {a}));
 
-            var c = physicsScene.Add(new PolygonShape(50, 50), 230, 280);
-            AddChild(c);
+            
+            var b = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-200, -10), new Vec2(-200, 10), new Vec2(200, 10), new Vec2(200, -10) });
+            AddChild(physicsWorld.CreateStaticBody(new Vec2(100, 400), 0, new VoltShape[] { b }));
 
-            var d = physicsScene.Add(new PolygonShape(50, 50), 250, 240);
-            AddChild(d);
+            //physicsScene = new PhysicsScene(10);
+            //var b = physicsScene.Add(new PolygonShape(50, 50), 210, 200);
+            //AddChild(b);
+            ////b.SetStatic();
 
-            var a = physicsScene.Add(new PolygonShape(600, 50), 200, 500);
+            //var a = physicsScene.Add(new PolygonShape(50, 50), 200, 500);
 
-            AddChild(a);
+            //AddChild(a);
 
-            a.SetStatic();
+            //a.SetStatic();
 
             //var c = physicsScene.Add(new Circle(50), 230, 200);
             //AddChild(c);
@@ -62,15 +65,20 @@ namespace GXPEngine.GameInst
 
         void Update()
         {
-            if (!paused)
+
+            //Console.WriteLine("FUCK");
+            //if (initTicks > 0)
+            //{
+            //    initTicks -= 1;
+            //    return;
+            //}
+            physicsWorld.Update();
+
+            if(Input.GetMouseButtonDown(0))
             {
-                if (initTicks > 0)
-                {
-                    initTicks -= 1;
-                    return;
-                }
-                physicsScene.Step();
+                physicsWorld.Bodies.First().AddForce(new Vec2(100, 0));
             }
+            //physicsScene.Step();
             //if (!paused)
             //{
             //    player.UpdateGeneral();

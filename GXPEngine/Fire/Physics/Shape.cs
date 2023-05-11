@@ -22,7 +22,7 @@ public class Shape : AnimationSprite
     public virtual void ComputeMass(float density) { }
     public virtual void SetOrient(float radians) { }
     public virtual void Draw() { }
-    public virtual ShapeType GetShapeType() 
+    public virtual ShapeType GetShapeType()
     { if (body != null) return body.shape.GetShapeType(); else return ShapeType.eCount; }
 
     public Body body;
@@ -88,15 +88,16 @@ public class PolygonShape : Shape
     public override void Initialize()
     {
         ComputeMass(1.0f);
-        //body.width = sizeX;
-        //body.height = sizeY;
+        body.width = width;
+        body.height = width;
+
         init = true;
-        body.SetOrigin(width / 2, height / 2);
+        body.SetOrigin(body.width / 2, body.height / 2);
     }
 
     public PolygonShape(int sizeX, int sizeY) : base("Checkers.png")
     {
-        SetBox(sizeX/2, sizeY/2);
+        SetBox(sizeX / 2, sizeY / 2);
         width = sizeX;
         height = sizeY;
         u = new Mat2(0);
@@ -170,7 +171,7 @@ public class PolygonShape : Shape
 
     public override void Draw()
     {
-        Console.WriteLine("Draw");
+        //Console.WriteLine("Draw");
         //body.rotation = (m_vertices[1] - m_vertices[2]).angleInDeg;
         body.rotation = u.AxisY().angleInDeg;
     }
