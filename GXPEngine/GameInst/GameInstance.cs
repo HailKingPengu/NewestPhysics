@@ -15,13 +15,13 @@ namespace GXPEngine.GameInst
 
         VoltWorld physicsWorld;
 
-        Player player;
-
         List<Pivot> layers;
 
         VoltPolygon e;
 
         VoltPolygon[] AAAs;
+
+        VoltCircle player;
 
         //layer 0 = foreground
         //layer 1 = physics/player area
@@ -66,6 +66,8 @@ namespace GXPEngine.GameInst
             var f = physicsWorld.CreateCircleWorldSpace(new Vec2(600, 200), 20);
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { f }));
 
+            player = physicsWorld.CreateCircleWorldSpace(new Vec2(500, 200), 20, 1f, 0.95f, 0);
+            AddChild(physicsWorld.CreateDynamicBody(new Vec2(500, 200), 0, new VoltShape[] { player }));
 
             //physicsScene = new PhysicsScene(10);
             //var b = physicsScene.Add(new PolygonShape(50, 50), 210, 200);
@@ -124,6 +126,20 @@ namespace GXPEngine.GameInst
                     
                 //physicsWorld.Bodies.First().AddForce(new Vec2(0, -1000));
             }
+
+            if (Input.GetKey(Key.D))
+            {
+                player.Body.AddForce(new Vec2(100, 0));
+            }
+            if (Input.GetKey(Key.A))
+            {
+                player.Body.AddForce(new Vec2(-100, 0));
+            }
+            if (Input.GetKeyDown(Key.W))
+            {
+                player.Body.AddForce(new Vec2(0, -2000));
+            }
+
             //physicsScene.Step();
             //if (!paused)
             //{

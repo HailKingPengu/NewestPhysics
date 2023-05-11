@@ -28,18 +28,16 @@ namespace GXPEngine.GameInst
         public Player(string image, float airFriction, float groundFriction) : base(image, 4, 6)
         {
             SetOrigin(width / 2, height / 2);
-            this.airFriction = airFriction;
-            this.groundFriction = groundFriction;
 
-            groundCheck = new EasyDraw(width - 1, 10);
+            groundCheck = new EasyDraw(width - 2, 10);
             AddChild(groundCheck);
-            groundCheck.Clear(125);
+            //groundCheck.Clear(125);
             groundCheck.SetOrigin(groundCheck.width / 2, groundCheck.height / 2);
             groundCheck.SetXY(0, height / 2);
 
-            ceilingCheck = new EasyDraw(width - 1, 10);
+            ceilingCheck = new EasyDraw(width - 2, 10);
             AddChild(ceilingCheck);
-            ceilingCheck.Clear(125);
+            //ceilingCheck.Clear(125);
             ceilingCheck.SetOrigin(ceilingCheck.width / 2, ceilingCheck.height / 2);
             ceilingCheck.SetXY(0, -height / 2);
 

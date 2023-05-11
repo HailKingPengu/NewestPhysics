@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Volatile;
 
 namespace GXPEngine.Fire
 {
@@ -16,19 +17,19 @@ namespace GXPEngine.Fire
 
         bool burning;
 
-        public HeatComponent(GameObject owner, float materialThreshold)
+        public HeatComponent(VoltBody owner, float materialThreshold)
         {
 
             colliderChild = new HeatCollider(owner, this, new string[1]);
 
 
+            burnThreshold = materialThreshold * owner.shapes[0].bodySpaceAABB.Area;
 
-
-            //if (owner.Collider is PolygonCollider)
+            //if (owner.shapes[0].bodySpaceAABB)
             //{
             //    burnThreshold = materialThreshold * FindPolygonSurf(owner.Collider as PolygonCollider);
             //}
-            //else if(owner.Collider is CircleCollider) 
+            //else if(owner is CircleCollider) 
             //{
             //    burnThreshold = materialThreshold * ((owner.Collider as CircleCollider).Radius * (owner.Collider as CircleCollider).Radius * Mathf.PI);
             //}

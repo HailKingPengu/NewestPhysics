@@ -18,6 +18,7 @@
  *  3. This notice may not be removed or altered from any source distribution.
 */
 
+using GXPEngine.Core;
 using System;
 using System.Collections.Generic;
 
@@ -47,10 +48,16 @@ namespace Volatile
             height = (int)radius * 2;
             SetOrigin((width / 2) / scaleX, (height / 2) / scaleY);
         }
-    #endregion
 
-    #region Properties
-    public override VoltShape.ShapeType Type { get { return ShapeType.Circle; } }
+        public void Update()
+        {
+            //rotation = this.;
+        }
+
+        #endregion
+
+        #region Properties
+        public override VoltShape.ShapeType Type { get { return ShapeType.Circle; } }
 
     public Vec2 Origin { get { return this.worldSpaceOrigin; } }
     public float Radius { get { return this.radius; } }

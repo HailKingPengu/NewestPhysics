@@ -38,7 +38,7 @@ namespace Volatile
         public const float DEFAULT_RESTITUTION = 0.5f;
         public const float DEFAULT_FRICTION = 0.8f;
 
-        internal const float DEFAULT_DELTA_TIME = 0.05f;
+        internal const float DEFAULT_DELTA_TIME = 0.10f;
         internal const float DEFAULT_DAMPING = 0.999f;
         internal const int DEFAULT_ITERATION_COUNT = 20;
 
