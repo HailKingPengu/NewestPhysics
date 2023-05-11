@@ -50,10 +50,10 @@ namespace GXPEngine.Scenes
             if (isActive)
             {
                 foreach (Button button in buttons)
-            {
-                button.DoMouseCheck(Input.mouseX, Input.mouseY);
+                {
+                    button.DoMouseCheck(Input.mouseX, Input.mouseY);
+                }
             }
         }
     }
-}
 }

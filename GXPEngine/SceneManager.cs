@@ -11,6 +11,7 @@ namespace GXPEngine
     internal class SceneManager : GameObject
     {
         List<Scene> scenes;
+        public OverlayScene overlayScene;
         int currentScene;
         bool paused;
 
@@ -18,13 +19,20 @@ namespace GXPEngine
         {
             scenes = new List<Scene>();
 
-            SceneBuilder sb = new SceneBuilder(this, scenes, new Vec2(game.width, game.height));
+            new SceneBuilder(this, scenes, new Vec2(game.width, game.height));
 
             AddChild(scenes[currentScene]);
         }
 
         public void ChangeScene(int toScene)
         {
+            if (overlayScene.isActive)
+            {
+                RemoveChild(overlayScene);
+                overlayScene.isActive = false;
+                scenes[1].gameInstance.paused = false;
+            }
+
             RemoveChild(scenes[currentScene]);
             scenes[currentScene].isActive = false;
 
@@ -32,6 +40,30 @@ namespace GXPEngine
 
             AddChild(scenes[currentScene]);
             scenes[currentScene].isActive = true;
+        }
+
+        public void Update()
+        {
+            if (Input.GetKeyDown(Key.TAB) && currentScene == 1)
+            {
+                OverlayState();
+            }
+        }
+
+        public void OverlayState()
+        {
+            if (overlayScene.isActive == false)
+            {
+                AddChild(overlayScene);
+                overlayScene.isActive = true;
+                scenes[1].gameInstance.paused = true;
+            }
+            else
+            {
+                RemoveChild(overlayScene);
+                overlayScene.isActive = false;
+                scenes[1].gameInstance.paused = false;
+            }
         }
     }
 }

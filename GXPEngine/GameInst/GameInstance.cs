@@ -9,7 +9,7 @@ namespace GXPEngine.GameInst
     internal class GameInstance : Pivot
     {
         int initTicks = 10;
-        bool paused;
+        public bool paused;
 
         PhysicsScene physicsScene;
 
@@ -29,7 +29,13 @@ namespace GXPEngine.GameInst
             AddChild(b);
             //b.SetStatic();
 
-            var a = physicsScene.Add(new PolygonShape(50, 50), 200, 500);
+            var c = physicsScene.Add(new PolygonShape(50, 50), 230, 280);
+            AddChild(c);
+
+            var d = physicsScene.Add(new PolygonShape(50, 50), 250, 240);
+            AddChild(d);
+
+            var a = physicsScene.Add(new PolygonShape(600, 50), 200, 500);
 
             AddChild(a);
 
@@ -56,12 +62,15 @@ namespace GXPEngine.GameInst
 
         void Update()
         {
-            if (initTicks > 0)
+            if (!paused)
             {
-                initTicks -= 1;
-                return;
+                if (initTicks > 0)
+                {
+                    initTicks -= 1;
+                    return;
+                }
+                physicsScene.Step();
             }
-            physicsScene.Step();
             //if (!paused)
             //{
             //    player.UpdateGeneral();

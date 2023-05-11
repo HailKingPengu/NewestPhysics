@@ -74,6 +74,9 @@ namespace GXPEngine.Scenes
                 case (1):
                     System.Environment.Exit(0);
                 break;
+                case (2):
+                    sceneManager.OverlayState();
+                break;
             }
         }
     }
