@@ -20,7 +20,7 @@ namespace GXPEngine
 
         static void MusicVolume(float volume)
         {
-            musicChannel.Volume = volume / 100;
+            //musicChannel.Volume = volume / 100;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,10 @@ namespace GXPEngine.GameInst
 
         List<Pivot> layers;
 
+        VoltPolygon e;
+
+        VoltPolygon[] AAAs;
+
         //layer 0 = foreground
         //layer 1 = physics/player area
         //layer 2+ = background
@@ -25,13 +30,41 @@ namespace GXPEngine.GameInst
         public GameInstance() 
         {
 
+            AAAs = new VoltPolygon[5];
+
             physicsWorld = new VoltWorld();
             var a = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
-            AddChild(physicsWorld.CreateDynamicBody(new Vec2(100, 100), 0, new VoltShape[] {a}));
+            AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { a }));
+
+            for(int i = 0; i < 5; i++)
+            {
+                var AAA = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-15, -15), new Vec2(-15, 15), new Vec2(15, 15), new Vec2(15, -15) });
+                AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { AAA }));
+
+                AAAs[i] = AAA;
+            }
+
+            var BBB = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-10, -10), new Vec2(-10, 10), new Vec2(10, 10), new Vec2(10, -10) });
+            AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { BBB }));
+
+            var CCC = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-5, -5), new Vec2(-5, 5), new Vec2(5, 5), new Vec2(5, -5) });
+            AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { CCC }));
+
+            var c = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
+            AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 250), 0, new VoltShape[] { c }));
+
+            var d = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
+            AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 300), 0, new VoltShape[] { d }));
+
+
+            e = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
+            AddChild(physicsWorld.CreateDynamicBody(new Vec2(800, 100), 0, new VoltShape[] { e }));
+
+            var b = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-400, -20), new Vec2(-400, 20), new Vec2(400, 20), new Vec2(400, -20) });
+            AddChild(physicsWorld.CreateStaticBody(new Vec2(600, 335), 0, new VoltShape[] { b }));
+
 
             
-            var b = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-200, -10), new Vec2(-200, 10), new Vec2(200, 10), new Vec2(200, -10) });
-            AddChild(physicsWorld.CreateStaticBody(new Vec2(100, 400), 0, new VoltShape[] { b }));
 
             //physicsScene = new PhysicsScene(10);
             //var b = physicsScene.Add(new PolygonShape(50, 50), 210, 200);
@@ -72,11 +105,23 @@ namespace GXPEngine.GameInst
             //    initTicks -= 1;
             //    return;
             //}
-            physicsWorld.Update();
 
+
+            if (!paused)
+            {
+                physicsWorld.Update();
+            }
+                
             if(Input.GetMouseButtonDown(0))
             {
-                physicsWorld.Bodies.First().AddForce(new Vec2(100, 0));
+                e.Body.AddForce(new Vec2(-10000, 0));
+
+                //foreach(VoltPolygon POLY in AAAs)
+                //{
+                //    POLY.Body.AddForce(new Vec2(Utils.Random(-2000, 2000), Utils.Random(-2000, 2000)));
+                //}
+                    
+                //physicsWorld.Bodies.First().AddForce(new Vec2(0, -1000));
             }
             //physicsScene.Step();
             //if (!paused)

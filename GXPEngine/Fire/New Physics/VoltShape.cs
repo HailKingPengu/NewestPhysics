@@ -94,7 +94,7 @@ namespace Volatile
 
         public VoltShape(string filename, int cols = 1, int rows = 1, int frames = -1, bool keepInCache = false, bool addCollider = false) : base(filename, cols, rows, frames, keepInCache, addCollider)
         {
-            //SetOrigin(width/2, height/2);
+            //SetOrigin(width, height);
         }
 
         #region Body-Related

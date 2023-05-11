@@ -50,7 +50,8 @@ namespace Volatile
             rotation = (vertices[1] - vertices[0]).angleInDeg;
             height = (int)(vertices[1] - vertices[0]).length;
             width = (int)(vertices[2] - vertices[1]).length;
-            SetOrigin(width/2, height/2);
+            //SetOrigin(width/2, height/2);
+            SetOrigin(0, 0);
         }
 
         internal void InitializeFromBodyVertices(
@@ -73,7 +74,7 @@ namespace Volatile
             rotation = (vertices[1] - vertices[0]).angleInDeg;
             height = (int)bodySpaceAABB.Height;
             width = (int)bodySpaceAABB.Width;
-            SetOrigin(width / 2, height / 2);
+            SetOrigin((width / 2) / scaleX, (height / 2) / scaleY);
         }
 
         public void Update()
