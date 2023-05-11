@@ -10,7 +10,18 @@ public class Body : Shape
 {
     public Shape shape;
 
-    public Vec2 position;
+    public Vec2 position
+    {
+        get
+        {
+            return new Vec2(x, y);
+        }
+        set
+        {
+            x = value.x; 
+            y = value.y;
+        }
+    }
     public Vec2 velocity;
 
     public float angularVelocity;
@@ -29,7 +40,7 @@ public class Body : Shape
     public float staticFriction;
     public float dynamicFriction;
     public float restitution;
-    public Body(Shape shape, int x, int y) : base("Checkers.png")
+    public Body(Shape shape, int x, int y) : base("Outline.png")
     {
         this.shape = shape;
         shape.body = this;
@@ -37,13 +48,15 @@ public class Body : Shape
         velocity = new Vec2(0, 0);
         angularVelocity = 0;
         torque = 0;
-        orient = Mathf.NextFloat(-Mathf.PI, Mathf.PI);
+        orient = 0;
         force = new Vec2(0, 0);
         staticFriction = 0.5f;
         dynamicFriction = 0.3f;
         restitution = 0.2f;
         shape.Initialize();
-        this.position = new Vec2(x, y);
+        AddChild(shape);
+        position = new Vec2(x, y);
+        init = true;
     }
 
     public void ApplyForce(Vec2 f)

@@ -87,7 +87,7 @@ public struct Vec2
     {
         return new Vec2(-a * v.y, a * v.x);
     }
-    public static float Dot(Vec2 a, Vec2 b) => (a.x * b.normalized.x) + (a.y * b.normalized.y);
+    public static float Dot(Vec2 a, Vec2 b) => (a.x * b.x) + (a.y * b.y);
     public static float Distance(Vec2 a, Vec2 b) => Mathf.Sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y));
     public override string ToString() => $"( {x} ; {y} )";
 

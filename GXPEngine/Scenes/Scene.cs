@@ -11,12 +11,14 @@ namespace GXPEngine.Scenes
     {
         //scene stuff, you know
 
+
+
         public List<Button> buttons;
         public Sprite bgImage;
 
         public bool isActive;
 
-        public GameInstance game;
+        public GameInstance gameInstance;
 
         public Scene()
         {
@@ -39,8 +41,8 @@ namespace GXPEngine.Scenes
 
         public void AddGame(GameInstance gameInstance)
         {
-            game = gameInstance;
-            AddChildAt(game, 1000);
+            this.gameInstance = gameInstance;
+            AddChildAt(this.gameInstance, 1000);
         }
 
         void Update()

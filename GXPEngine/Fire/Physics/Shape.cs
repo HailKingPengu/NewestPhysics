@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 public class Shape : AnimationSprite
 {
-
+    public bool init = false;
     public enum ShapeType
     {
         eCircle,
@@ -22,7 +22,8 @@ public class Shape : AnimationSprite
     public virtual void ComputeMass(float density) { }
     public virtual void SetOrient(float radians) { }
     public virtual void Draw() { }
-    public virtual ShapeType GetShapeType() { return body.GetShapeType(); }
+    public virtual ShapeType GetShapeType() 
+    { if (body != null) return body.shape.GetShapeType(); else return ShapeType.eCount; }
 
     public Body body;
 
@@ -32,7 +33,7 @@ public class Shape : AnimationSprite
     // For Polygon shape
     public Mat2 u; // Orientation matrix from model to world
 
-    public Shape(string filename, int frames = -1, bool keepInCache = false, bool addCollider = true) : base(filename, 1, 1, frames, keepInCache, addCollider)
+    public Shape(string filename, int frames = -1, bool keepInCache = false, bool addCollider = false) : base(filename, 1, 1, frames, keepInCache, false)
     {
 
     }
@@ -40,7 +41,7 @@ public class Shape : AnimationSprite
 
 public class Circle : Shape
 {
-    public Circle(float r) : base("Circle.png")
+    public Circle(float r) : base("circle.png")
     {
         radius = r;
         width = 2 * (int)r;
@@ -55,7 +56,10 @@ public class Circle : Shape
 
     public override void Initialize()
     {
+        //body.width = 2 * (int)radius;
+        //body.height = 2 * (int)radius;
         ComputeMass(1.0f);
+        init = true;
     }
 
     public override void ComputeMass(float density)
@@ -72,6 +76,8 @@ public class Circle : Shape
 
     public override ShapeType GetShapeType()
     {
+        if (!init)
+            return ShapeType.eCount;
         return ShapeType.eCircle;
     }
 };
@@ -82,11 +88,19 @@ public class PolygonShape : Shape
     public override void Initialize()
     {
         ComputeMass(1.0f);
+        //body.width = sizeX;
+        //body.height = sizeY;
+        init = true;
+        body.SetOrigin(width / 2, height / 2);
     }
 
-    PolygonShape(int sizeX, int sizeY) : base("Checkers.png")
+    public PolygonShape(int sizeX, int sizeY) : base("Checkers.png")
     {
-        
+        SetBox(sizeX/2, sizeY/2);
+        width = sizeX;
+        height = sizeY;
+        u = new Mat2(0);
+
     }
     private int sizeX, sizeY;
 
@@ -156,11 +170,15 @@ public class PolygonShape : Shape
 
     public override void Draw()
     {
-
+        Console.WriteLine("Draw");
+        //body.rotation = (m_vertices[1] - m_vertices[2]).angleInDeg;
+        body.rotation = u.AxisY().angleInDeg;
     }
 
     public override ShapeType GetShapeType()
     {
+        if (!init)
+            return ShapeType.eCount;
         return ShapeType.ePoly;
     }
 
