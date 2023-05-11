@@ -103,6 +103,7 @@
     <Compile Include="Scenes\Scene.cs" />
     <Compile Include="Scenes\SceneBuilder.cs" />
     <Compile Include="Scenes\Slider.cs" />
+    <Compile Include="SoundManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -112,6 +113,7 @@
     <Content Include="Assets\Background2.jpg" />
     <Content Include="Assets\Background3.gif" />
     <Content Include="Assets\doof.png" />
+    <Content Include="Assets\songPlaceholder.mp3" />
     <Content Include="Assets\OverlayBackground.png" />
   </ItemGroup>
 </Project>

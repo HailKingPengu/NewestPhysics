@@ -88,8 +88,6 @@ namespace GXPEngine.Scenes
             float clampedMouseX = Mathf.Clamp(Input.mouseX, center.x - size.x / 2, center.x + size.x / 2);
             handle.x = clampedMouseX - center.x;
             currentValue = ((clampedMouseX - (center.x - size.x / 2)) / size.x) * reach;
-
-            Console.WriteLine(currentValue);
         }
     }
 }

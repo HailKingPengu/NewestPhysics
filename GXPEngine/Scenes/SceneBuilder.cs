@@ -23,7 +23,7 @@ namespace GXPEngine.Scenes
 
             //game
             scenes.Add(new Scene());
-            //scenes[1].AddButton(new Button(new Vec2(400, 300), new Vec2(200, 50), Color.White, "WAAAAA", 0, 0, sceneManager));
+            scenes[1].AddButton(new Button(new Vec2(screenSize.x - 40, 40), new Vec2(50, 50), Color.White, "...", 2, 0, sceneManager));
             scenes[1].AddBackground(new Sprite("../../Assets/Background2.jpg"), screenSize);
             scenes[1].AddGame(new GameInstance());
             scenes[1].isActive = false;
