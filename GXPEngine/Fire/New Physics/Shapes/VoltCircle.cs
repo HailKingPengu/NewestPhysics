@@ -29,21 +29,24 @@ namespace Volatile
 {
   public sealed class VoltCircle : VoltShape
   {
-    #region Factory Functions
-    internal void InitializeFromWorldSpace(
-      Vec2 worldSpaceOrigin, 
-      float radius,
-      float density,
-      float friction,
-      float restitution)
-    {
-      base.Initialize(density, friction, restitution);
+        #region Factory Functions
+        internal void InitializeFromWorldSpace(
+          Vec2 worldSpaceOrigin,
+          float radius,
+          float density,
+          float friction,
+          float restitution)
+        {
+            base.Initialize(density, friction, restitution);
 
-      this.worldSpaceOrigin = worldSpaceOrigin;
-      this.radius = radius;
-      this.sqrRadius = radius * radius;
-      this.worldSpaceAABB = new VoltAABB(worldSpaceOrigin, radius);
-    }
+            this.worldSpaceOrigin = worldSpaceOrigin;
+            this.radius = radius;
+            this.sqrRadius = radius * radius;
+            this.worldSpaceAABB = new VoltAABB(worldSpaceOrigin, radius);
+            width = (int)radius * 2;
+            height = (int)radius * 2;
+            SetOrigin((width / 2) / scaleX, (height / 2) / scaleY);
+        }
     #endregion
 
     #region Properties

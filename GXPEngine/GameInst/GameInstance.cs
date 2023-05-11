@@ -36,7 +36,7 @@ namespace GXPEngine.GameInst
             var a = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { a }));
 
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var AAA = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-15, -15), new Vec2(-15, 15), new Vec2(15, 15), new Vec2(15, -15) });
                 AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { AAA }));
@@ -63,8 +63,9 @@ namespace GXPEngine.GameInst
             var b = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-400, -20), new Vec2(-400, 20), new Vec2(400, 20), new Vec2(400, -20) });
             AddChild(physicsWorld.CreateStaticBody(new Vec2(600, 335), 0, new VoltShape[] { b }));
 
+            var f = physicsWorld.CreateCircleWorldSpace(new Vec2(600, 200), 20);
+            AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { f }));
 
-            
 
             //physicsScene = new PhysicsScene(10);
             //var b = physicsScene.Add(new PolygonShape(50, 50), 210, 200);

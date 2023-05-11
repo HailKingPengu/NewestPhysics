@@ -21,6 +21,9 @@ namespace GXPEngine.Fire
 
             colliderChild = new HeatCollider(owner, this, new string[1]);
 
+
+
+
             //if (owner.Collider is PolygonCollider)
             //{
             //    burnThreshold = materialThreshold * FindPolygonSurf(owner.Collider as PolygonCollider);
