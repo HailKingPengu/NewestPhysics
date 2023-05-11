@@ -57,6 +57,7 @@ public struct Vec2
     public static Vec2 operator -(Vec2 a, Vec2 b) => new Vec2(a.x - b.x, a.y - b.y);
     public static Vec2 operator -(Vec2 a, float b) => new Vec2(a.x - b, a.y - b);
     public static Vec2 operator -(float a, Vec2 b) => new Vec2(a - b.x, a - b.y);
+    public static Vec2 operator -(Vec2 a) => new Vec2(-a.x, -a.y);
     public static Vec2 operator *(Vec2 a, Vec2 b) => new Vec2(a.x * b.x, a.y * b.y);
     public static Vec2 operator *(Vec2 a, float b) => new Vec2(a.x * b, a.y * b);
     public static Vec2 operator *(float a, Vec2 b) => new Vec2(a * b.x, a * b.y);
