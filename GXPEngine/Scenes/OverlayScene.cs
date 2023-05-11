@@ -6,24 +6,13 @@ using System.Threading.Tasks;
 
 namespace GXPEngine.Scenes
 {
-    internal class OverlayScene : GameObject
+    internal class OverlayScene : Scene
     {
         //scene stuff, you know
 
-        public List<Button> buttons;
-
-
-        public bool isActive;
-
         public OverlayScene()
         {
-            buttons = new List<Button>();
-        }
 
-        public void AddButton(Button button)
-        {
-            buttons.Add(button);
-            AddChild(button);
         }
 
         void Update()

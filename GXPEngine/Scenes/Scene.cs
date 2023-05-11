@@ -14,6 +14,8 @@ namespace GXPEngine.Scenes
 
 
         public List<Button> buttons;
+        public List<Slider> sliders;
+
         public Sprite bgImage;
 
         public bool isActive;
@@ -23,12 +25,19 @@ namespace GXPEngine.Scenes
         public Scene()
         {
             buttons = new List<Button>();
+            sliders = new List<Slider>();
         }
 
         public void AddButton(Button button)
         {
             buttons.Add(button);
             AddChild(button);
+        }
+
+        public void AddSlider(Slider slider)
+        {
+            sliders.Add(slider);
+            AddChild(slider);
         }
 
         public void AddBackground(Sprite image, Vec2 screenSize)
@@ -50,10 +59,14 @@ namespace GXPEngine.Scenes
             if (isActive)
             {
                 foreach (Button button in buttons)
-            {
-                button.DoMouseCheck(Input.mouseX, Input.mouseY);
+                {
+                    button.DoMouseCheck(Input.mouseX, Input.mouseY);
+                }
+                foreach (Slider slider in sliders)
+                {
+                    slider.DoMouseCheck(Input.mouseX, Input.mouseY);
+                }
             }
         }
     }
-}
 }

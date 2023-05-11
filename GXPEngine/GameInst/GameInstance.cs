@@ -10,7 +10,7 @@ namespace GXPEngine.GameInst
     internal class GameInstance : Pivot
     {
         int initTicks = 10;
-        bool paused;
+        public bool paused;
 
         VoltWorld physicsWorld;
 
