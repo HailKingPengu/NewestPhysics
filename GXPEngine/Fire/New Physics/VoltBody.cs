@@ -420,7 +420,7 @@ namespace Volatile
 #endif
         }
 
-        internal void Update()
+        internal void RunUpdate()
         {
             if (this.history != null)
                 this.history.Store(this.currentState);

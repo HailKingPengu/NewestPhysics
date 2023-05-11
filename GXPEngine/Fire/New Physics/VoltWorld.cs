@@ -266,14 +266,14 @@ namespace Volatile
     /// If a frame number is provided, all dynamic bodies will store their
     /// state for that frame for later testing.
     /// </summary>
-    public void Update()
+    public void RunUpdate()
     {
       for (int i = 0; i < this.bodies.Count; i++)
       {
         VoltBody body = this.bodies[i];
         if (body.IsStatic == false)
         {
-          body.Update();
+          body.RunUpdate();
           this.dynamicBroadphase.UpdateBody(body);
         }
       }
@@ -300,7 +300,7 @@ namespace Volatile
         return;
       }
 
-      body.Update();
+      body.RunUpdate();
       this.dynamicBroadphase.UpdateBody(body);
       this.BroadPhase(body, collideDynamic);
 

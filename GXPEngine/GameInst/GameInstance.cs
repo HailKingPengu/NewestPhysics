@@ -109,7 +109,7 @@ namespace GXPEngine.GameInst
 
             if (!paused)
             {
-                physicsWorld.Update();
+                physicsWorld.RunUpdate();
             }
                 
             if(Input.GetMouseButtonDown(0))
