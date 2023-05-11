@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,8 @@ namespace GXPEngine.Scenes
             scenes.Add(new Scene());
             scenes[2].AddButton(new Button(new Vec2(400, 300), new Vec2(200, 50), Color.White, "back", 0, 0, sceneManager));
             scenes[2].AddButton(new Button(new Vec2(400, 380), new Vec2(200, 50), Color.White, "sound idk", 0, 2, sceneManager));
-            scenes[2].AddButton(new Button(new Vec2(400, 460), new Vec2(200, 50), Color.White, "bomb the nurburgring", 0, 2, sceneManager));
+            scenes[2].AddSlider(new Slider(new Vec2(400, 460), new Vec2(200, 10), new Vec2(20,50), Color.Black, Color.Wheat, 0, 100, 80, sceneManager));
+            scenes[2].AddButton(new Button(new Vec2(400, 540), new Vec2(200, 50), Color.White, "bomb the nurburgring", 0, 2, sceneManager));
             scenes[2].AddBackground(new Sprite("../../Assets/Background3.gif"), screenSize);
             scenes[2].isActive = false;
 
