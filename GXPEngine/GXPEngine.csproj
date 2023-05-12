@@ -85,8 +85,10 @@
     <Compile Include="Fire\Physics\Old\Structs.cs" />
     <Compile Include="Fire\Physics\Old\PhysicsObject.cs" />
     <Compile Include="Fire\Physics\Vec2.cs" />
+    <Compile Include="GameInst\AimIndicator.cs" />
     <Compile Include="GameInst\GameInstance.cs" />
-    <Compile Include="GameInst\Player.cs" />
+    <Compile Include="GameInst\PlayerController.cs" />
+    <Compile Include="GameInst\PlayerSprite.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />
     <Compile Include="GXPEngine\AddOns\TiledLoader.cs" />

@@ -13,6 +13,10 @@ namespace GXPEngine.GameInst
         int initTicks = 10;
         public bool paused;
 
+
+        //public EasyDraw debugger;
+
+
         VoltWorld physicsWorld;
 
         List<Pivot> layers;
@@ -22,6 +26,8 @@ namespace GXPEngine.GameInst
         VoltPolygon[] AAAs;
 
         VoltCircle player;
+        PlayerController playerController;
+        PlayerSprite playerSprite;
 
         //layer 0 = foreground
         //layer 1 = physics/player area
@@ -29,6 +35,10 @@ namespace GXPEngine.GameInst
 
         public GameInstance() 
         {
+
+
+
+
 
             AAAs = new VoltPolygon[5];
 
@@ -60,14 +70,26 @@ namespace GXPEngine.GameInst
             e = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(800, 100), 0, new VoltShape[] { e }));
 
-            var b = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-400, -20), new Vec2(-400, 20), new Vec2(400, 20), new Vec2(400, -20) });
-            AddChild(physicsWorld.CreateStaticBody(new Vec2(600, 335), 0, new VoltShape[] { b }));
+            var b = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-800, -20), new Vec2(-800, 20), new Vec2(800, 20), new Vec2(800, -20) });
+            AddChild(physicsWorld.CreateStaticBody(new Vec2(600, 500), 0, new VoltShape[] { b }));
 
             var f = physicsWorld.CreateCircleWorldSpace(new Vec2(600, 200), 20);
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { f }));
 
-            player = physicsWorld.CreateCircleWorldSpace(new Vec2(500, 200), 20, 1f, 0.95f, 0);
+            player = physicsWorld.CreateCircleWorldSpace(new Vec2(500, 200), 20, 0.01f, 0.95f, 0);
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(500, 200), 0, new VoltShape[] { player }));
+
+            playerController = new PlayerController(physicsWorld, this);
+            player.AddChild(playerController);
+            playerController.Set();
+
+            playerSprite = new PlayerSprite("../../Assets/doof.png");
+            playerController.AddChild(playerSprite);
+
+
+            //debugger = new EasyDraw(1200, 900);
+            //AddChildAt(debugger, 100);
+
 
             //physicsScene = new PhysicsScene(10);
             //var b = physicsScene.Add(new PolygonShape(50, 50), 210, 200);
@@ -113,32 +135,27 @@ namespace GXPEngine.GameInst
             if (!paused)
             {
                 physicsWorld.RunUpdate();
+
+                //if (Input.GetMouseButtonDown(0))
+                //{
+
+                //    //Vec2 playerPos = new Vec2(player.Body.x, player.Body.y);
+                //    //Vec2 mousePos = new Vec2(Input.mouseX, Input.mouseY);
+                    
+
+
+                //    //e.Body.AddForce(new Vec2(-10000, 0));
+
+                //    //foreach(VoltPolygon POLY in AAAs)
+                //    //{
+                //    //    POLY.Body.AddForce(new Vec2(Utils.Random(-2000, 2000), Utils.Random(-2000, 2000)));
+                //    //}
+
+                //    //physicsWorld.Bodies.First().AddForce(new Vec2(0, -1000));
+                //}
             }
                 
-            if(Input.GetMouseButtonDown(0))
-            {
-                e.Body.AddForce(new Vec2(-10000, 0));
 
-                //foreach(VoltPolygon POLY in AAAs)
-                //{
-                //    POLY.Body.AddForce(new Vec2(Utils.Random(-2000, 2000), Utils.Random(-2000, 2000)));
-                //}
-                    
-                //physicsWorld.Bodies.First().AddForce(new Vec2(0, -1000));
-            }
-
-            if (Input.GetKey(Key.D))
-            {
-                player.Body.AddForce(new Vec2(100, 0));
-            }
-            if (Input.GetKey(Key.A))
-            {
-                player.Body.AddForce(new Vec2(-100, 0));
-            }
-            if (Input.GetKeyDown(Key.W))
-            {
-                player.Body.AddForce(new Vec2(0, -2000));
-            }
 
             //physicsScene.Step();
             //if (!paused)

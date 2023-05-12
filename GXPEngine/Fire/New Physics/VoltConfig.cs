@@ -56,7 +56,7 @@ namespace Volatile
         internal const float MINIMUM_DYNAMIC_MASS = 0.00001f;
 
         internal const bool USE_GRAVITY = true;
-        internal const float GRAVITY_MULTIPLIER = 2.0f;
+        internal const float GRAVITY_MULTIPLIER = 0.06f;
         internal const float GRAVITY = 10.0f;
     }
 }

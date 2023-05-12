@@ -11,7 +11,7 @@ public class MyGame : Game
 
 
 
-    public MyGame() : base(800, 600, false)
+    public MyGame() : base(1200, 900, false)
     {
 
         sceneManager = new SceneManager();
