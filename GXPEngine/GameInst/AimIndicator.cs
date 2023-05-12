@@ -26,6 +26,8 @@ namespace GXPEngine.GameInst
             StrokeWeight(3);
 
             steps = new Vec2[stepNum];
+
+            visible = false;
         }
 
         void Update()
@@ -64,6 +66,16 @@ namespace GXPEngine.GameInst
 
                 Ellipse(width / 2 + steps[i].x, height / 2 + steps[i].y, 10 - (int)(0.8 * i), 10 - (int)(0.8 * i));
             }
+        }
+
+        public void StartAiming()
+        {
+            visible = true;
+        }
+
+        public void StopAiming()
+        {
+            visible = false;
         }
     }
 }

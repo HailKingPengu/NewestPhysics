@@ -29,7 +29,7 @@ namespace GXPEngine.GameInst
         PlayerController playerController;
         PlayerSprite playerSprite;
 
-        Environmental_Sound_System sound;
+        //Environmental_Sound_System sound;
 
         //layer 0 = foreground
         //layer 1 = physics/player area
@@ -37,9 +37,9 @@ namespace GXPEngine.GameInst
 
         public GameInstance() 
         {
-            sound = new Environmental_Sound_System();
+            //sound = new Environmental_Sound_System();
 
-            sound.StartMusic();
+            //sound.StartMusic();
 
 
 
