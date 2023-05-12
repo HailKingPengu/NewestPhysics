@@ -85,6 +85,9 @@
     <Compile Include="Fire\Physics\Old\Structs.cs" />
     <Compile Include="Fire\Physics\Old\PhysicsObject.cs" />
     <Compile Include="Fire\Physics\Vec2.cs" />
+    <Compile Include="Fire\Sound\Environmental Sound System.cs" />
+    <Compile Include="Fire\Sound\Player Sound System.cs" />
+    <Compile Include="Fire\Sound\SoundSystem.cs" />
     <Compile Include="GameInst\AimIndicator.cs" />
     <Compile Include="GameInst\GameInstance.cs" />
     <Compile Include="GameInst\PlayerController.cs" />
@@ -148,5 +151,9 @@
     <Content Include="Assets\doof.png" />
     <Content Include="Assets\songPlaceholder.mp3" />
     <Content Include="Assets\OverlayBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\AmbientSounds\" />
+    <Folder Include="Assets\PlayerSounds\" />
   </ItemGroup>
 </Project>

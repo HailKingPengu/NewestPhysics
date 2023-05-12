@@ -29,12 +29,17 @@ namespace GXPEngine.GameInst
         PlayerController playerController;
         PlayerSprite playerSprite;
 
+        Environmental_Sound_System sound;
+
         //layer 0 = foreground
         //layer 1 = physics/player area
         //layer 2+ = background
 
         public GameInstance() 
         {
+            sound = new Environmental_Sound_System();
+
+            sound.StartMusic();
 
 
 
@@ -156,6 +161,11 @@ namespace GXPEngine.GameInst
             }
                 
 
+
+            if(Time.deltaTime > 50 )
+            {
+                Console.WriteLine("Lag");
+            }
 
             //physicsScene.Step();
             //if (!paused)
