@@ -46,15 +46,14 @@ namespace GXPEngine.Fire
         }
 
 
-        //float FindPolygonSurf(PolygonCollider collider)
+        //float FindPolygonSurf(PolygonCollider collider) 
         //{
         //    Vec2[] points = collider.Points;
 
         //    float minx = float.MaxValue;
         //    float miny = float.MaxValue;
         //    float maxx = float.MinValue;
-        //    float maxy = float.MinValue;
-
+        //    float maxy = float.MinValue;h.
         //    for (int i = 0; i < points.Length; i++)
         //    {
         //        if (points[i].x < minx) minx = points[i].x;
