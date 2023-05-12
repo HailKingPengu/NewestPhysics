@@ -30,14 +30,14 @@ namespace GXPEngine.GameInst
             visible = false;
         }
 
-        void Update()
+        public void UpdateAiming(float offsetX)
         {
             ClearTransparent();
 
-            Vec2 relMousePoint = new Vec2(width / 2 - playerBody.x + Input.mouseX, height / 2 - playerBody.y + Input.mouseY).normalized * 200;
+            //Vec2 relMousePoint = new Vec2(width / 2 - playerBody.x + Input.mouseX, height / 2 - playerBody.y + Input.mouseY).normalized * 200;
 
             Vec2 playerPos = new Vec2(playerBody.x, playerBody.y);
-            Vec2 mousePos = new Vec2(Input.mouseX, Input.mouseY);
+            Vec2 mousePos = new Vec2(Input.mouseX - offsetX, Input.mouseY);
 
             //Line(width / 2, height / 2, relMousePoint.x, relMousePoint.y);
 
@@ -56,13 +56,13 @@ namespace GXPEngine.GameInst
 
             stepLength = force.length * 0.05f;
 
-            steps[0] = new Vec2(Input.mouseX - playerBody.x, Input.mouseY - playerBody.y).normalized * stepLength;
+            steps[0] = new Vec2(Input.mouseX - offsetX - playerBody.x, Input.mouseY - playerBody.y).normalized * stepLength;
 
             Ellipse(width / 2 + steps[0].x, height / 2 + steps[0].y, 10, 10);
 
             for (int i = 1; i < steps.Length; i++)
             {
-                steps[i] = steps[i-1] + (steps[0]*0.71f) + i * new Vec2(0, addedY);
+                steps[i] = steps[i-1] + (steps[0] * 0.71f) + i * new Vec2(0, addedY);
 
                 Ellipse(width / 2 + steps[i].x, height / 2 + steps[i].y, 10 - (int)(0.8 * i), 10 - (int)(0.8 * i));
             }

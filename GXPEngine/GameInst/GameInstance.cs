@@ -29,6 +29,8 @@ namespace GXPEngine.GameInst
         PlayerController playerController;
         PlayerSprite playerSprite;
 
+        float camSmoothing = 0.1f;
+
         //Environmental_Sound_System sound;
 
         //layer 0 = foreground
@@ -173,6 +175,11 @@ namespace GXPEngine.GameInst
             //    player.UpdateGeneral();
             //    player.UpdateInput(87, 65, 83, 68, 69, 81);
             //}
+
+            float camPosition = -player.Body.x + 600;
+
+            x += (camPosition - x) * camSmoothing; 
+
         }
     }
 }

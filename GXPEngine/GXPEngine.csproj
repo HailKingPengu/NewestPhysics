@@ -42,8 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fire\Editor\Serializer.cs" />
-    <Compile Include="Fire\Heat\HeatCollider.cs" />
-    <Compile Include="Fire\Heat\HeatComponent.cs" />
+    <Compile Include="GameInst\Heat\HeatCollider.cs" />
+    <Compile Include="GameInst\Heat\HeatComponent.cs" />
     <Compile Include="Fire\New Physics\Extensions\VoltExplosion.cs" />
     <Compile Include="Fire\New Physics\Internals\Axis.cs" />
     <Compile Include="Fire\New Physics\Internals\Broadphase\IBroadphase.cs" />

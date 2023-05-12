@@ -22,6 +22,8 @@ namespace GXPEngine.GameInst
 
         bool aiming = false;
 
+        float offsetX;
+
         public PlayerController(VoltWorld physicsWorld, GameInstance gameInstance)
         {
 
@@ -44,14 +46,21 @@ namespace GXPEngine.GameInst
             if (!gameInstance.paused)
             {
 
+                offsetX = gameInstance.x;
+
+                if (aiming)
+                {
+                    aimIndicator.UpdateAiming(offsetX);
+                }
+
                 Vec2 playerPos = new Vec2(playerBody.x, playerBody.y);
-                Vec2 mousePos = new Vec2(Input.mouseX, Input.mouseY);
+                Vec2 mousePos = new Vec2(Input.mouseX - offsetX, Input.mouseY);
 
                 rotation = -parent.rotation;
 
 
                 if (Input.GetMouseButtonUp(0) &&
-                    Input.mouseX < playerBody.x + 32 && Input.mouseX > playerBody.x - 32 &&
+                    Input.mouseX - offsetX < playerBody.x + 32 && Input.mouseX - offsetX > playerBody.x - 32 &&
                     Input.mouseY < playerBody.y + 32 && Input.mouseY > playerBody.y - 32)
                 {
                     if (!aiming)
@@ -65,7 +74,6 @@ namespace GXPEngine.GameInst
                         aimIndicator.StopAiming();
                     }
                 }
-
 
                 if (Input.GetMouseButtonDown(0) && aiming)
                 {
