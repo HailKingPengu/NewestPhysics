@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GXPEngine.Fire;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -58,7 +59,10 @@ namespace GXPEngine.GameInst
                 var AAA = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-15, -15), new Vec2(-15, 15), new Vec2(15, 15), new Vec2(15, -15) });
                 AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { AAA }));
 
+
                 AAAs[i] = AAA;
+
+                AAAs[i].AddChild(new HeatComponent(AAAs[i].Body, 2));
             }
 
             var BBB = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-10, -10), new Vec2(-10, 10), new Vec2(10, 10), new Vec2(10, -10) });
@@ -176,7 +180,9 @@ namespace GXPEngine.GameInst
             //    player.UpdateInput(87, 65, 83, 68, 69, 81);
             //}
 
-            float camPosition = -player.Body.x + 600;
+            float camPosition = Mathf.Clamp(-player.Body.x + 600, -2000, 400);
+
+            Console.WriteLine(camPosition);
 
             x += (camPosition - x) * camSmoothing; 
 

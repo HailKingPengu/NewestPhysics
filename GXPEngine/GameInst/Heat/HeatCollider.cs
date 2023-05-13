@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Volatile;
 
 namespace GXPEngine.Fire
 {
-    public class HeatCollider
+    public class HeatCollider : EasyDraw
     {
 
-        GameObject owner;
+        VoltBody owner;
         public HeatComponent heat;
 
         Vec2 size;
@@ -20,12 +21,15 @@ namespace GXPEngine.Fire
 
         float extraY;
 
-        public HeatCollider(GameObject owner, HeatComponent heatComponent, params string[] args)
+        public HeatCollider(GameObject owner, HeatComponent heatComponent, params string[] args) : base(100, 100)
         {
             heat = heatComponent;
 
             max = center + size;
             min = center - size;
+
+            SetOrigin(width/2, height/2);
+            Clear(255, 100, 0, 100);
         }
 
         //extraY = -0.02 (x-4.15)^(4)+6;

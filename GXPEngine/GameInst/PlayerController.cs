@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GXPEngine.Fire;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Authentication.ExtendedProtection;
@@ -105,6 +106,7 @@ namespace GXPEngine.GameInst
 
             var fireball = physicsWorld.CreateCircleWorldSpace(playerPos + aim * 35, 10);
             gameInstance.AddChild(physicsWorld.CreateDynamicBody(playerPos + aim * 35, 0, new VoltShape[] { fireball }));
+            fireball.AddChild(new HeatComponent(fireball.Body, 2));
 
             Vec2 force = ((mousePos - playerPos) * 8f);
 

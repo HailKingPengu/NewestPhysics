@@ -7,8 +7,10 @@ using Volatile;
 
 namespace GXPEngine.Fire
 {
-    public class HeatComponent
+    public class HeatComponent:Pivot
     {
+
+        VoltBody owner;
 
         HeatCollider colliderChild;
 
@@ -21,7 +23,9 @@ namespace GXPEngine.Fire
         {
 
             colliderChild = new HeatCollider(owner, this, new string[1]);
+            AddChild(colliderChild);
 
+            this.owner = owner;
 
             burnThreshold = materialThreshold * owner.shapes[0].bodySpaceAABB.Area;
 
@@ -38,6 +42,11 @@ namespace GXPEngine.Fire
 
         void Update()
         {
+
+            rotation = -Vec2.RadToDeg(owner.Angle);
+
+            //Console.WriteLine(Vec2.RadToDeg(owner.Angle));
+
             if (burning)
             {
                 //list of all HeatColliders
