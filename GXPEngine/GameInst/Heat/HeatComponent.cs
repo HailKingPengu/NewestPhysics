@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GXPEngine.GameInst;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,23 +8,35 @@ using Volatile;
 
 namespace GXPEngine.Fire
 {
-    public class HeatComponent
+    public class HeatComponent:Pivot
     {
+
+        VoltBody owner;
 
         HeatCollider colliderChild;
 
         public float currentHeat;
-        float burnThreshold;
+        public float burnThreshold;
+        // /\ set to private after use in debug
 
-        bool burning;
+        public bool burning;
 
-        public HeatComponent(VoltBody owner, float materialThreshold)
+        public HeatComponent(VoltBody owner, float materialThreshold, bool startBurning)
         {
 
             colliderChild = new HeatCollider(owner, this, new string[1]);
+            AddChild(colliderChild);
 
+            this.owner = owner;
 
             burnThreshold = materialThreshold * owner.shapes[0].bodySpaceAABB.Area;
+
+            burning = startBurning;
+
+            if (startBurning)
+            {
+                currentHeat = burnThreshold;
+            }
 
             //if (owner.shapes[0].bodySpaceAABB)
             //{
@@ -36,12 +49,31 @@ namespace GXPEngine.Fire
 
         }
 
+        public HeatCollider returnCollider()
+        {
+            return colliderChild;
+        }
+
         void Update()
         {
-            if (burning)
+
+            rotation = -Vec2.RadToDeg(owner.Angle);
+
+            //Console.WriteLine(Vec2.RadToDeg(owner.Angle));
+
+            //if (burning)
+            //{
+            //    //list of all HeatColliders
+            //    colliderChild.Collide(new List<HeatCollider>());
+            //}
+
+            if(currentHeat > burnThreshold)
             {
-                //list of all HeatColliders
-                colliderChild.Collide(new List<HeatCollider>());
+                burning = true;
+            }
+            if(!burning)
+            {
+                currentHeat *= 0.999f;
             }
         }
 

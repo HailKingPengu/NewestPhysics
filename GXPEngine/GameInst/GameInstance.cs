@@ -1,4 +1,5 @@
-﻿using GXPEngine.Fire.Editor;
+﻿using GXPEngine.Fire;
+using GXPEngine.Fire.Editor;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -30,7 +31,11 @@ namespace GXPEngine.GameInst
         PlayerController playerController;
         PlayerSprite playerSprite;
 
-        Environmental_Sound_System sound;
+        public List<HeatCollider> heatColliders;
+
+        float camSmoothing = 0.1f;
+
+        //Environmental_Sound_System sound;
 
         Level level;
 
@@ -68,33 +73,55 @@ namespace GXPEngine.GameInst
             sound.StartMusic();
 
 
+            heatColliders = new List<HeatCollider>();
 
 
+            AAAs = new VoltPolygon[30];
 
+            physicsWorld = new VoltWorld();
             AAAs = new VoltPolygon[5];
 
             var a = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { a }));
 
-            for (int i = 0; i < 5; i++)
+            List<HeatComponent> components = new List<HeatComponent>();
+
+            for (int i = 0; i < 30; i++)
             {
                 var AAA = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-15, -15), new Vec2(-15, 15), new Vec2(15, 15), new Vec2(15, -15) });
                 AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { AAA }));
 
+
                 AAAs[i] = AAA;
+
+                components.Add(new HeatComponent(AAAs[i].Body, 2, false));
+                AAAs[i].AddChild(components[i]);
+                heatColliders.Add(components[i].returnCollider());
             }
 
             var BBB = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-10, -10), new Vec2(-10, 10), new Vec2(10, 10), new Vec2(10, -10) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { BBB }));
+            HeatComponent BBBHeat = new HeatComponent(BBB.Body, 2, false);
+            BBB.AddChild(BBBHeat);
+            heatColliders.Add(BBBHeat.returnCollider());
 
             var CCC = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-5, -5), new Vec2(-5, 5), new Vec2(5, 5), new Vec2(5, -5) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { CCC }));
+            HeatComponent CCCHeat = new HeatComponent(CCC.Body, 2, false);
+            CCC.AddChild(CCCHeat);
+            heatColliders.Add(CCCHeat.returnCollider());
 
             var c = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 250), 0, new VoltShape[] { c }));
+            HeatComponent cHeat = new HeatComponent(c.Body, 2, false);
+            c.AddChild(cHeat);
+            heatColliders.Add(cHeat.returnCollider());
 
             var d = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 300), 0, new VoltShape[] { d }));
+            HeatComponent dHeat = new HeatComponent(d.Body, 2, false);
+            d.AddChild(dHeat);
+            heatColliders.Add(dHeat.returnCollider());
 
 
             e = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
@@ -234,6 +261,16 @@ namespace GXPEngine.GameInst
             if (!paused)
             {
 
+
+                foreach(HeatCollider heatCol in heatColliders)
+                {
+                    heatCol.CalculateCurrent();
+                }
+                foreach (HeatCollider heatCol in heatColliders)
+                {
+                    heatCol.Collide(heatColliders);
+                }
+
                 physicsWorld.RunUpdate();
                 //if (Input.GetMouseButtonDown(0))
                 //{
@@ -267,6 +304,13 @@ namespace GXPEngine.GameInst
             //    player.UpdateGeneral();
             //    player.UpdateInput(87, 65, 83, 68, 69, 81);
             //}
+
+            float camPosition = Mathf.Clamp(-player.Body.x + 600, -2000, 400);
+
+            //Console.WriteLine(camPosition);
+
+            x += (camPosition - x) * camSmoothing; 
+
         }
     }
 }
