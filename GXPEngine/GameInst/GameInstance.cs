@@ -47,6 +47,7 @@ namespace GXPEngine.GameInst
         Vec2 min;
         Vec2 max;
         Vec2 center;
+        bool testing;
 
         #endregion
 
@@ -246,7 +247,14 @@ namespace GXPEngine.GameInst
 
                     }
                 }
-                physicsWorld.RunUpdate();
+
+                if (Input.GetKeyDown(Key.ENTER))
+                {
+                    testing = !testing;
+                }
+
+                if(testing)
+                    physicsWorld.RunUpdate();
                 return;
             }
             //Console.WriteLine("FUCK");

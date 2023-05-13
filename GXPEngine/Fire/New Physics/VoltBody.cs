@@ -532,6 +532,11 @@ namespace Volatile
             this.BiasVelocity += this.InvMass * j;
             this.BiasRotation -= this.InvInertia * VoltMath.Cross(j, r);
         }
+
+        public virtual void OnCollision(VoltBody other)
+        {
+
+        }
         #endregion
 
         #region Transformation Shortcuts
