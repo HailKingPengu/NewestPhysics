@@ -47,6 +47,9 @@
     <Compile Include="Fire\Editor\LevelObject.cs" />
     <Compile Include="Fire\Editor\PhysicsObject.cs" />
     <Compile Include="Fire\Editor\Serializer.cs" />
+    <Compile Include="Fire\Sound\Environmental Sound System.cs" />
+    <Compile Include="Fire\Sound\Player Sound System.cs" />
+    <Compile Include="Fire\Sound\SoundSystem.cs" />
     <Compile Include="GameInst\Heat\FireballDestroyer.cs" />
     <Compile Include="GameInst\Heat\HeatCollider.cs" />
     <Compile Include="GameInst\Heat\HeatComponent.cs" />

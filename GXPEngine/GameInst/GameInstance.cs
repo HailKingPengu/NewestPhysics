@@ -18,7 +18,6 @@ namespace GXPEngine.GameInst
 
         //public EasyDraw debugger;
 
-
         VoltWorld physicsWorld;
 
         List<Pivot> layers;
@@ -35,7 +34,7 @@ namespace GXPEngine.GameInst
 
         float camSmoothing = 0.1f;
 
-        //Environmental_Sound_System sound;
+        Environmental_Sound_System sound;
 
         Level level;
 
@@ -78,8 +77,8 @@ namespace GXPEngine.GameInst
 
             AAAs = new VoltPolygon[30];
 
-            physicsWorld = new VoltWorld();
-            AAAs = new VoltPolygon[5];
+            //physicsWorld = new VoltWorld();
+            //AAAs = new VoltPolygon[5];
 
             var a = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { a }));
