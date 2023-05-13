@@ -45,6 +45,7 @@
     <Compile Include="Fire\Editor\EditorLevel.cs" />
     <Compile Include="Fire\Editor\Level.cs" />
     <Compile Include="Fire\Editor\LevelObject.cs" />
+    <Compile Include="Fire\Editor\PhysicsObject.cs" />
     <Compile Include="Fire\Editor\Serializer.cs" />
     <Compile Include="Fire\Heat\HeatCollider.cs" />
     <Compile Include="Fire\Heat\HeatComponent.cs" />

@@ -2,14 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using Volatile;
 
 
-
-public class LevelObject : GameObject
+[DataContract]
+public class LevelObject
 {
-    public VoltBody body;
+    
 }
 
