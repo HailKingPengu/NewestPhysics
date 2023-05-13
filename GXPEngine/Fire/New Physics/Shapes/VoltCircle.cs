@@ -51,7 +51,7 @@ namespace Volatile
 
         public void Update()
         {
-            //rotation = this.;
+            rotation = Vec2.RadToDeg(this.Body.Angle);
         }
 
         #endregion

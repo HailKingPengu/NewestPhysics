@@ -20,6 +20,7 @@
 
 using GXPEngine;
 using System;
+using System.Runtime.InteropServices;
 
 #if UNITY
 using UnityEngine;
@@ -594,7 +595,8 @@ namespace Volatile
             this.LinearVelocity *= this.World.Damping;
             this.AngularVelocity *= this.World.Damping;
 
-            if(VoltConfig.USE_GRAVITY) AddForce(new Vec2(0, VoltConfig.GRAVITY * VoltConfig.GRAVITY_MULTIPLIER));
+            //if(VoltConfig.USE_GRAVITY) AddForce(new Vec2(0, VoltConfig.GRAVITY * VoltConfig.GRAVITY_MULTIPLIER));
+            if (VoltConfig.USE_GRAVITY) LinearVelocity += new Vec2(0, VoltConfig.GRAVITY * VoltConfig.GRAVITY_MULTIPLIER);
 
             // Calculate total force and torque
             Vec2 totalForce = this.Force * this.InvMass;

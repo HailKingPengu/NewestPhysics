@@ -92,8 +92,10 @@
     <Compile Include="Fire\Sound\Environmental Sound System.cs" />
     <Compile Include="Fire\Sound\Player Sound System.cs" />
     <Compile Include="Fire\Sound\SoundSystem.cs" />
+    <Compile Include="GameInst\AimIndicator.cs" />
     <Compile Include="GameInst\GameInstance.cs" />
-    <Compile Include="GameInst\Player.cs" />
+    <Compile Include="GameInst\PlayerController.cs" />
+    <Compile Include="GameInst\PlayerSprite.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />
     <Compile Include="GXPEngine\AddOns\TiledLoader.cs" />
