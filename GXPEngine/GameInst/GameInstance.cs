@@ -234,13 +234,13 @@ namespace GXPEngine.GameInst
             if (!paused)
             {
 
-
+                physicsWorld.RunUpdate();
                 //if (Input.GetMouseButtonDown(0))
                 //{
 
                 //    //Vec2 playerPos = new Vec2(player.Body.x, player.Body.y);
                 //    //Vec2 mousePos = new Vec2(Input.mouseX, Input.mouseY);
-                    
+
 
 
                 //    //e.Body.AddForce(new Vec2(-10000, 0));
