@@ -67,9 +67,9 @@ namespace GXPEngine.GameInst
                 return;
             }
 
-            sound = new Environmental_Sound_System();
+            //sound = new Environmental_Sound_System();
 
-            sound.StartMusic();
+            //sound.StartMusic();
 
 
             heatColliders = new List<HeatCollider>();
@@ -270,6 +270,7 @@ namespace GXPEngine.GameInst
                     heatCol.Collide(heatColliders);
                 }
 
+                physicsWorld.RunUpdate();
                 //if (Input.GetMouseButtonDown(0))
                 //{
 
