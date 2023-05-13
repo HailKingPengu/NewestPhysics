@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GXPEngine.Fire.Editor;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -25,12 +26,18 @@ namespace GXPEngine.GameInst
 
         Environmental_Sound_System sound;
 
+        Level level;
+
+
+
         //layer 0 = foreground
         //layer 1 = physics/player area
         //layer 2+ = background
 
         public GameInstance() 
         {
+            level = new Level();
+
             sound = new Environmental_Sound_System();
 
             sound.StartMusic();
@@ -102,6 +109,15 @@ namespace GXPEngine.GameInst
 
             //player = new Player("doof.png", 1.02f, 1.1f);
             //AddChild(player);
+
+            foreach(VoltBody body in GetChildren())
+            {
+                var obj = new LevelObject();
+                obj.body = body;
+                level.objects.Add(obj);
+            }
+
+            //Serializer.WriteToBinaryFile("Level1.dat", level);
         }
 
         void Update()

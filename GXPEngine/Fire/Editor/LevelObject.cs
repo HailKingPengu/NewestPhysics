@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Volatile;
 
 
-public class SoundSystem1 : GameObject
+
+public class LevelObject : GameObject
 {
-    public virtual void Play() { }
+    public VoltBody body;
 }
 

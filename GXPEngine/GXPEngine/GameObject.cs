@@ -7,9 +7,11 @@ namespace GXPEngine
 	/// <summary>
 	/// GameObject is the base class for all display objects. 
 	/// </summary>
+	
 	public abstract class GameObject : Transformable
 	{
 		public string name;
+		
 		private Collider _collider;
 		
 		private List<GameObject> _children = new List<GameObject>();
@@ -67,7 +69,7 @@ namespace GXPEngine
 		internal Collider collider {
 			get { return _collider; }
 		}
-		
+
 		//------------------------------------------------------------------------------------------------------------------------
 		//														game
 		//------------------------------------------------------------------------------------------------------------------------
@@ -76,11 +78,7 @@ namespace GXPEngine
 		/// This is a unique instance throughout the runtime of the game.
 		/// Use this to access the top of the displaylist hierarchy, and to retreive the width and height of the screen.
 		/// </summary>
-		public Game game {
-			get {
-				return Game.main;
-			}
-		}
+		public Game game => Game.main;
 
 		/// <summary>
 		/// Get all a list of all objects that currently overlap this one.

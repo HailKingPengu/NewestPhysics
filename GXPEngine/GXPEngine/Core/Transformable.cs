@@ -6,6 +6,7 @@ namespace GXPEngine
 	/// <summary>
 	/// The Transformable class contains all positional data of GameObjects.
 	/// </summary>
+	
 	public class Transformable
 	{
 
