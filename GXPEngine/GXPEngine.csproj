@@ -38,9 +38,14 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fire\Editor\EditorLevel.cs" />
+    <Compile Include="Fire\Editor\Level.cs" />
+    <Compile Include="Fire\Editor\LevelObject.cs" />
+    <Compile Include="Fire\Editor\PhysicsObject.cs" />
     <Compile Include="Fire\Editor\Serializer.cs" />
     <Compile Include="GameInst\Heat\FireballDestroyer.cs" />
     <Compile Include="GameInst\Heat\HeatCollider.cs" />
@@ -152,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\AmbientSounds\" />
+    <Folder Include="Assets\Levels\" />
     <Folder Include="Assets\PlayerSounds\" />
   </ItemGroup>
 </Project>

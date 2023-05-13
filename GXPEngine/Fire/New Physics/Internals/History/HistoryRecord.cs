@@ -27,64 +27,65 @@ using UnityEngine;
 
 namespace Volatile
 {
-  /// <summary>
-  /// A stored historical image of a past body state, used for historical
-  /// queries and raycasts. Rather than actually rolling the body back to
-  /// its old position (expensive), we transform the ray into the body's
-  /// local space based on the body's old position/axis. Then all casts
-  /// on shapes use the local-space ray (this applies both for current-
-  /// time and past-time raycasts and point queries).
-  /// </summary>
-  internal struct HistoryRecord
-  {
-    internal VoltAABB aabb;
-    internal Vec2 position;
-    internal Vec2 facing;
-
-    internal void Store(ref HistoryRecord other)
+    /// <summary>
+    /// A stored historical image of a past body state, used for historical
+    /// queries and raycasts. Rather than actually rolling the body back to
+    /// its old position (expensive), we transform the ray into the body's
+    /// local space based on the body's old position/axis. Then all casts
+    /// on shapes use the local-space ray (this applies both for current-
+    /// time and past-time raycasts and point queries).
+    /// </summary>
+    
+    internal struct HistoryRecord
     {
-      this.aabb = other.aabb;
-      this.position = other.position;
-      this.facing = other.facing;
-    }
+        internal VoltAABB aabb;
+        internal Vec2 position;
+        internal Vec2 facing;
 
-    #region World-Space to Body-Space Transformations
-    internal Vec2 WorldToBodyPoint(Vec2 vector)
-    {
-      return VoltMath.WorldToBodyPoint(this.position, this.facing, vector);
-    }
+        internal void Store(ref HistoryRecord other)
+        {
+            this.aabb = other.aabb;
+            this.position = other.position;
+            this.facing = other.facing;
+        }
 
-    internal Vec2 WorldToBodyDirection(Vec2 vector)
-    {
-      return VoltMath.WorldToBodyDirection(this.facing, vector);
-    }
+        #region World-Space to Body-Space Transformations
+        internal Vec2 WorldToBodyPoint(Vec2 vector)
+        {
+            return VoltMath.WorldToBodyPoint(this.position, this.facing, vector);
+        }
 
-    internal VoltRayCast WorldToBodyRay(ref VoltRayCast rayCast)
-    {
-      return new VoltRayCast(
-        this.WorldToBodyPoint(rayCast.origin),
-        this.WorldToBodyDirection(rayCast.direction),
-        rayCast.distance);
-    }
-    #endregion
+        internal Vec2 WorldToBodyDirection(Vec2 vector)
+        {
+            return VoltMath.WorldToBodyDirection(this.facing, vector);
+        }
 
-    #region Body-Space to World-Space Transformations
-    internal Vec2 BodyToWorldPoint(Vec2 vector)
-    {
-      return VoltMath.BodyToWorldPoint(this.position, this.facing, vector);
-    }
+        internal VoltRayCast WorldToBodyRay(ref VoltRayCast rayCast)
+        {
+            return new VoltRayCast(
+              this.WorldToBodyPoint(rayCast.origin),
+              this.WorldToBodyDirection(rayCast.direction),
+              rayCast.distance);
+        }
+        #endregion
 
-    internal Vec2 BodyToWorldDirection(Vec2 vector)
-    {
-      return VoltMath.BodyToWorldDirection(this.facing, vector);
-    }
+        #region Body-Space to World-Space Transformations
+        internal Vec2 BodyToWorldPoint(Vec2 vector)
+        {
+            return VoltMath.BodyToWorldPoint(this.position, this.facing, vector);
+        }
 
-    internal Axis BodyToWorldAxis(Axis axis)
-    {
-      Vec2 normal = axis.Normal.Rotate(this.facing);
-      float width = Vec2.Dot(normal, this.position) + axis.Width;
-      return new Axis(normal, width);
+        internal Vec2 BodyToWorldDirection(Vec2 vector)
+        {
+            return VoltMath.BodyToWorldDirection(this.facing, vector);
+        }
+
+        internal Axis BodyToWorldAxis(Axis axis)
+        {
+            Vec2 normal = axis.Normal.Rotate(this.facing);
+            float width = Vec2.Dot(normal, this.position) + axis.Width;
+            return new Axis(normal, width);
+        }
+        #endregion
     }
-    #endregion
-  }
 }

@@ -37,7 +37,7 @@ namespace Volatile
 
     public delegate bool VoltBodyFilter(VoltBody body);
     public delegate bool VoltCollisionFilter(VoltBody bodyA, VoltBody bodyB);
-
+    
     public class VoltBody
       : GameObject, IVoltPoolable<VoltBody>
       , IIndexedValue
@@ -209,6 +209,7 @@ namespace Volatile
         internal VoltShape[] shapes;
         internal int shapeCount;
 
+        
         private HistoryBuffer history;
         private HistoryRecord currentState;
 

@@ -18,103 +18,104 @@
  *  3. This notice may not be removed or altered from any source distribution.
 */
 
+using System;
 using System.Collections.Generic;
 
 namespace Volatile
 {
-  public interface IVoltPool<T>
-  {
-    T Allocate();
-    void Deallocate(T obj);
-    IVoltPool<T> Clone();
-  }
+    public interface IVoltPool<T>
+    {
+        T Allocate();
+        void Deallocate(T obj);
+        IVoltPool<T> Clone();
+    }
+    
+    public class VoltPool
+    {
+        public static void Free<T>(T obj)
+          where T : IVoltPoolable<T>
+        {
+            obj.Pool.Deallocate(obj);
+        }
 
-  public class VoltPool
-  {
-    public static void Free<T>(T obj)
+        public static void SafeReplace<T>(ref T destination, T obj)
+          where T : IVoltPoolable<T>
+        {
+            if (destination != null)
+                VoltPool.Free(destination);
+            destination = obj;
+        }
+
+        public static void DrainQueue<T>(Queue<T> queue)
+          where T : IVoltPoolable<T>
+        {
+            while (queue.Count > 0)
+                VoltPool.Free(queue.Dequeue());
+        }
+    }
+    
+    internal abstract class VoltPoolBase<T> : IVoltPool<T>
       where T : IVoltPoolable<T>
     {
-      obj.Pool.Deallocate(obj);
-    }
+        private readonly Stack<T> freeList;
 
-    public static void SafeReplace<T>(ref T destination, T obj)
-      where T : IVoltPoolable<T>
+        public abstract IVoltPool<T> Clone();
+        protected abstract T Create();
+
+        public VoltPoolBase()
+        {
+            this.freeList = new Stack<T>();
+        }
+
+        public T Allocate()
+        {
+            T obj;
+            if (this.freeList.Count > 0)
+                obj = this.freeList.Pop();
+            else
+                obj = this.Create();
+
+            obj.Pool = this;
+            obj.Reset();
+            return obj;
+        }
+
+        public void Deallocate(T obj)
+        {
+            VoltDebug.Assert(obj.Pool == this);
+
+            obj.Reset();
+            obj.Pool = null; // Prevent multiple frees
+            this.freeList.Push(obj);
+        }
+    }
+    
+    internal class VoltPool<T> : VoltPoolBase<T>
+      where T : IVoltPoolable<T>, new()
     {
-      if (destination != null)
-        VoltPool.Free(destination);
-      destination = obj;
-    }
+        protected override T Create()
+        {
+            return new T();
+        }
 
-    public static void DrainQueue<T>(Queue<T> queue)
-      where T : IVoltPoolable<T>
+        public override IVoltPool<T> Clone()
+        {
+            return new VoltPool<T>();
+        }
+    }
+    
+    internal class VoltPool<TBase, TDerived> : VoltPoolBase<TBase>
+      where TBase : IVoltPoolable<TBase>
+      where TDerived : TBase, new()
     {
-      while (queue.Count > 0)
-        VoltPool.Free(queue.Dequeue());
+        protected override TBase Create()
+        {
+            return new TDerived();
+        }
+
+        public override IVoltPool<TBase> Clone()
+        {
+            return new VoltPool<TBase, TDerived>();
+        }
     }
-  }
-
-  internal abstract class VoltPoolBase<T> : IVoltPool<T>
-    where T : IVoltPoolable<T>
-  {
-    private readonly Stack<T> freeList;
-
-    public abstract IVoltPool<T> Clone();
-    protected abstract T Create();
-
-    public VoltPoolBase()
-    {
-      this.freeList = new Stack<T>();
-    }
-
-    public T Allocate()
-    {
-      T obj;
-      if (this.freeList.Count > 0)
-        obj = this.freeList.Pop();
-      else
-        obj = this.Create();
-
-      obj.Pool = this;
-      obj.Reset();
-      return obj;
-    }
-
-    public void Deallocate(T obj)
-    {
-      VoltDebug.Assert(obj.Pool == this);
-
-      obj.Reset();
-      obj.Pool = null; // Prevent multiple frees
-      this.freeList.Push(obj);
-    }
-  }
-
-  internal class VoltPool<T> : VoltPoolBase<T>
-    where T : IVoltPoolable<T>, new()
-  {
-    protected override T Create()
-    {
-      return new T();
-    }
-
-    public override IVoltPool<T> Clone()
-    {
-      return new VoltPool<T>();
-    }
-  }
-
-  internal class VoltPool<TBase, TDerived> : VoltPoolBase<TBase>
-    where TBase : IVoltPoolable<TBase>
-    where TDerived : TBase, new()
-  {
-    protected override TBase Create()
-    {
-      return new TDerived();
-    }
-
-    public override IVoltPool<TBase> Clone()
-    {
-      return new VoltPool<TBase, TDerived>();
-    }
-  }
 }

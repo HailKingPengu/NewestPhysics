@@ -1,4 +1,5 @@
 ﻿using GXPEngine.Fire;
+using GXPEngine.Fire.Editor;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -36,15 +37,40 @@ namespace GXPEngine.GameInst
 
         //Environmental_Sound_System sound;
 
+        Level level;
+
+
+        #region Editor Vars
+        bool isEditor = true;
+        bool poly = true;
+        int clicks = 0;
+        Vec2[] points = new Vec2[4];
+        Vec2 min;
+        Vec2 max;
+        Vec2 center;
+
+        #endregion
+
+
+
         //layer 0 = foreground
         //layer 1 = physics/player area
         //layer 2+ = background
 
         public GameInstance() 
         {
-            //sound = new Environmental_Sound_System();
+            if (isEditor)
+            {
 
-            //sound.StartMusic();
+                level = new Level();
+
+                physicsWorld = new VoltWorld();
+                return;
+            }
+
+            sound = new Environmental_Sound_System();
+
+            sound.StartMusic();
 
 
             heatColliders = new List<HeatCollider>();
@@ -53,6 +79,8 @@ namespace GXPEngine.GameInst
             AAAs = new VoltPolygon[30];
 
             physicsWorld = new VoltWorld();
+            AAAs = new VoltPolygon[5];
+
             var a = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { a }));
 
@@ -148,11 +176,80 @@ namespace GXPEngine.GameInst
 
             //player = new Player("doof.png", 1.02f, 1.1f);
             //AddChild(player);
+
+
+
+            //Serializer.WriteToBinaryFile("Level1.dat", level);
         }
 
         void Update()
         {
+            if (isEditor)
+            {
+                if (Input.GetKeyDown(Key.S))
+                {
+                    PhysicsObject obj;
+                    foreach (VoltBody body in GetChildren())
+                    {
+                        obj = new PhysicsObject();
+                        if (body.shapes[0] is VoltCircle circle)
+                        {
+                            obj.radians = body.Angle;
+                            obj.radius = circle.radius;
+                            obj.position = body.Position;
+                        }
+                        else if (body.shapes[0] is VoltPolygon poly)
+                        {
+                            obj.position = body.Position;
+                            obj.vertices = poly.bodyVertices;
+                            obj.radians = body.Angle;
+                        }
+                        level.objects.Add(obj);
+                    }
 
+                    Serializer.WriteObject("level.dat", level);
+                    
+                }
+
+                if(Input.GetMouseButtonDown(0))
+                {
+
+                    if (poly)
+                    {
+                        switch (clicks)
+                        {
+                            case 0:
+                                {
+                                    points = new Vec2[4];
+                                    points[0] = new Vec2(Input.mouseX, Input.mouseY);
+                                    clicks++;
+                                    break;
+                                }
+                            case 1:
+                                {
+                                    points[2] = new Vec2(Input.mouseX, Input.mouseY);
+                                    min.x = Mathf.Min(points[0].x, points[2].x);
+                                    min.y = Mathf.Min(points[0].y, points[2].y);
+                                    max.x = Mathf.Max(points[0].x, points[2].x);
+                                    max.y = Mathf.Max(points[0].y, points[2].y);
+                                    points[0] = new Vec2(min.x, min.y);
+                                    points[1] = new Vec2(min.x, max.y);
+                                    points[2] = new Vec2(max.x, max.y);
+                                    points[3] = new Vec2(max.x, min.y);
+                                    center = new Vec2(min.x + (max.x - min.x)/2, min.y +  (max.y - min.y)/2);
+                                    var a = physicsWorld.CreatePolygonWorldSpace(points);
+                                    AddChild(physicsWorld.CreateDynamicBody(center, 0, a));
+                                    clicks = 0;
+                                    break;
+                                }
+                        }
+                            
+
+                    }
+                }
+                physicsWorld.RunUpdate();
+                return;
+            }
             //Console.WriteLine("FUCK");
             //if (initTicks > 0)
             //{
@@ -163,7 +260,7 @@ namespace GXPEngine.GameInst
 
             if (!paused)
             {
-                physicsWorld.RunUpdate();
+
 
                 foreach(HeatCollider heatCol in heatColliders)
                 {

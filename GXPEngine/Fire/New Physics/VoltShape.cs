@@ -23,9 +23,11 @@ using UnityEngine;
 #endif
 
 using GXPEngine;
+using System;
 
 namespace Volatile
 {
+    
     public abstract class VoltShape
       : AnimationSprite, IVoltPoolable<VoltShape>
     {
