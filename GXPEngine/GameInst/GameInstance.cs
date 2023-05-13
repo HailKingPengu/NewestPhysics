@@ -56,14 +56,14 @@ namespace GXPEngine.GameInst
         //layer 1 = physics/player area
         //layer 2+ = background
 
-        public GameInstance() 
+        public GameInstance()
         {
+            physicsWorld = new VoltWorld();
             if (isEditor)
             {
 
                 level = new Level();
 
-                physicsWorld = new VoltWorld();
                 return;
             }
 
@@ -207,10 +207,10 @@ namespace GXPEngine.GameInst
                     }
 
                     Serializer.WriteObject("level.dat", level);
-                    
+
                 }
 
-                if(Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0))
                 {
 
                     if (poly)
@@ -235,14 +235,14 @@ namespace GXPEngine.GameInst
                                     points[1] = new Vec2(min.x, max.y);
                                     points[2] = new Vec2(max.x, max.y);
                                     points[3] = new Vec2(max.x, min.y);
-                                    center = new Vec2(min.x + (max.x - min.x)/2, min.y +  (max.y - min.y)/2);
+                                    center = new Vec2(min.x + (max.x - min.x) / 2, min.y + (max.y - min.y) / 2);
                                     var a = physicsWorld.CreatePolygonWorldSpace(points);
                                     AddChild(physicsWorld.CreateDynamicBody(center, 0, a));
                                     clicks = 0;
                                     break;
                                 }
                         }
-                            
+
 
                     }
                 }
@@ -261,7 +261,7 @@ namespace GXPEngine.GameInst
             {
 
 
-                foreach(HeatCollider heatCol in heatColliders)
+                foreach (HeatCollider heatCol in heatColliders)
                 {
                     heatCol.CalculateCurrent();
                 }
@@ -289,10 +289,10 @@ namespace GXPEngine.GameInst
                 //    //physicsWorld.Bodies.First().AddForce(new Vec2(0, -1000));
                 //}
             }
-                
 
 
-            if(Time.deltaTime > 50 )
+
+            if (Time.deltaTime > 50)
             {
                 Console.WriteLine("Lag");
             }
@@ -308,7 +308,7 @@ namespace GXPEngine.GameInst
 
             //Console.WriteLine(camPosition);
 
-            x += (camPosition - x) * camSmoothing; 
+            x += (camPosition - x) * camSmoothing;
 
         }
     }

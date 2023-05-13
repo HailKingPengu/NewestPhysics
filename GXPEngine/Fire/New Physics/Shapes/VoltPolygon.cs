@@ -48,8 +48,8 @@ namespace Volatile
 
             this.countBody = 0; // Needs to be set on metric compute
             rotation = (vertices[1] - vertices[0]).angleInDeg;
-            height = (int)bodySpaceAABB.Height;
-            width = (int)bodySpaceAABB.Width;
+            height = (int)worldSpaceAABB.Height;
+            width = (int)worldSpaceAABB.Width;
             SetOrigin((width / 2) / scaleX, (height / 2) / scaleY);
         }
 
