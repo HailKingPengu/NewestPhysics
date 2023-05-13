@@ -209,7 +209,9 @@ namespace Volatile
         internal VoltShape[] shapes;
         internal int shapeCount;
 
-        
+        private bool collided;
+        private VoltBody collidedBody;
+
         private HistoryBuffer history;
         private HistoryRecord currentState;
 
@@ -474,6 +476,12 @@ namespace Volatile
             this.BiasRotation = 0.0f;
         }
 
+        public bool Collision(out VoltBody body)
+        {
+            body = collidedBody;
+            return collided;
+        }
+
         /// <summary>
         /// Full reset. Clears out all data for pooling. Call FreeShapes() first.
         /// </summary>
@@ -533,9 +541,16 @@ namespace Volatile
             this.BiasRotation -= this.InvInertia * VoltMath.Cross(j, r);
         }
 
-        public virtual void OnCollision(VoltBody other)
+        public void OnCollision(VoltBody other)
         {
+            collided = true;
+            collidedBody = other;
+        }
 
+        public void Update()
+        {
+            collided = false;
+            collidedBody = null;
         }
         #endregion
 

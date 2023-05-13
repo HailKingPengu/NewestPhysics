@@ -1,4 +1,5 @@
-﻿using GXPEngine.Managers;
+﻿using GXPEngine.Fire;
+using GXPEngine.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,17 @@ namespace GXPEngine.GameInst.Heat
 
         public void update()
         {
+            if (fireball.Collision(out VoltBody body))
+            {
+                List<GameObject> children = body.shapes[0].GetChildren();
+                foreach (GameObject child in children) 
+                {
+                    if(child is HeatComponent heat)
+                    {
+                        
+                    }
+                }
+            }
             //check if has collided?
             //if(fireball)
         }
