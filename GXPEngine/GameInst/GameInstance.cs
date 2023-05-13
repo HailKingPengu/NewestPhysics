@@ -60,6 +60,9 @@ namespace GXPEngine.GameInst
         public GameInstance()
         {
             physicsWorld = new VoltWorld();
+
+            heatColliders = new List<HeatCollider>();
+
             if (isEditor)
             {
 
@@ -94,34 +97,24 @@ namespace GXPEngine.GameInst
 
                 AAAs[i] = AAA;
 
-                components.Add(new HeatComponent(AAAs[i].Body, 2, false));
-                AAAs[i].AddChild(components[i]);
-                heatColliders.Add(components[i].returnCollider());
+                AddHeatComponentPolygon(AAAs[i], false);
             }
 
             var BBB = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-10, -10), new Vec2(-10, 10), new Vec2(10, 10), new Vec2(10, -10) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { BBB }));
-            HeatComponent BBBHeat = new HeatComponent(BBB.Body, 2, false);
-            BBB.AddChild(BBBHeat);
-            heatColliders.Add(BBBHeat.returnCollider());
+            AddHeatComponentPolygon(BBB, false);
 
             var CCC = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-5, -5), new Vec2(-5, 5), new Vec2(5, 5), new Vec2(5, -5) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { CCC }));
-            HeatComponent CCCHeat = new HeatComponent(CCC.Body, 2, false);
-            CCC.AddChild(CCCHeat);
-            heatColliders.Add(CCCHeat.returnCollider());
+            AddHeatComponentPolygon(CCC, false);
 
             var c = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 250), 0, new VoltShape[] { c }));
-            HeatComponent cHeat = new HeatComponent(c.Body, 2, false);
-            c.AddChild(cHeat);
-            heatColliders.Add(cHeat.returnCollider());
+            AddHeatComponentPolygon(c, false);
 
             var d = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 300), 0, new VoltShape[] { d }));
-            HeatComponent dHeat = new HeatComponent(d.Body, 2, false);
-            d.AddChild(dHeat);
-            heatColliders.Add(dHeat.returnCollider());
+            AddHeatComponentPolygon(d, false);
 
 
             e = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
@@ -239,6 +232,9 @@ namespace GXPEngine.GameInst
                                     center = new Vec2(min.x + (max.x - min.x) / 2, min.y + (max.y - min.y) / 2);
                                     var a = physicsWorld.CreatePolygonWorldSpace(points);
                                     AddChild(physicsWorld.CreateDynamicBody(center, 0, a));
+
+                                    AddHeatComponentPolygon(a, false);
+
                                     clicks = 0;
                                     break;
                                 }
@@ -318,6 +314,20 @@ namespace GXPEngine.GameInst
 
             x += (camPosition - x) * camSmoothing;
 
+        }
+
+        void AddHeatComponentPolygon(VoltPolygon poly, bool startBurning)
+        {
+            HeatComponent heat = new HeatComponent(poly.Body, 2, startBurning);
+            poly.AddChild(heat);
+            heatColliders.Add(heat.returnCollider());
+        }
+
+        void AddHeatComponentCircle(VoltCircle poly, bool startBurning)
+        {
+            HeatComponent heat = new HeatComponent(poly.Body, 2, startBurning);
+            poly.AddChild(heat);
+            heatColliders.Add(heat.returnCollider());
         }
     }
 }
