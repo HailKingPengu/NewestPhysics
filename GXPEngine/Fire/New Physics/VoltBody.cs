@@ -163,7 +163,7 @@ namespace Volatile
         public Vec2 Facing
         {
             get { return this.currentState.facing; }
-            private set { this.currentState.facing = value; }
+            set { this.currentState.facing = value; }
         }
 
         public VoltAABB AABB
@@ -188,7 +188,7 @@ namespace Volatile
         /// <summary>
         /// Current angle in radians.
         /// </summary>
-        public float Angle { get; private set; }
+        public float Angle { get; set; }
 
         public Vec2 LinearVelocity { get; set; }
         public float AngularVelocity { get; set; }

@@ -45,8 +45,8 @@ namespace GXPEngine.Fire
 
         public void CalculateCurrent()
         {
-            max = new Vec2(50 * owner.shapes[0].scaleX, 50 * owner.shapes[0].scaleY);
-            min = new Vec2(-50 * owner.shapes[0].scaleX, -50 * owner.shapes[0].scaleY);
+            //max = new Vec2(50 * owner.shapes[0].scaleX, 50 * owner.shapes[0].scaleY);
+            //min = new Vec2(-50 * owner.shapes[0].scaleX, -50 * owner.shapes[0].scaleY);
 
             //Console.WriteLine(max + " - " + min);
 
@@ -62,7 +62,7 @@ namespace GXPEngine.Fire
                 Clear(255, 0, 50, 150);
             }
 
-            for(int i = 0; i < colliders.Count; i++)
+            for(int i = colliders.IndexOf(this) + 1; i < colliders.Count; i++)
             {
                 if (colliders[i] != null || colliders[i] != this)
                 {
@@ -73,24 +73,34 @@ namespace GXPEngine.Fire
                     if (colliders[i].currentMin.x <= currentMax.x && colliders[i].currentMax.x >= currentMin.x &&
                         colliders[i].currentMin.y <= currentMax.y && colliders[i].currentMax.y >= currentMin.y)
                     {
-                        float otherHeat = colliders[i].heat.currentHeat;
+                        HeatComponent otherHeat = colliders[i].heat;
                         //replace with reference to HeatComponent
                         //if (heat.burning)
                         //{
                         //    colliders[i].heat.burning = true;
                         //}
 
-                        if (heat.burning && otherHeat < heat.currentHeat && otherHeat <= colliders[i].heat.burnThreshold)
+                        if (heat.burning && otherHeat.currentHeat < heat.currentHeat && otherHeat.currentHeat <= colliders[i].heat.burnThreshold)
                         {
-                            float deltaHeat = Mathf.Clamp((heat.currentHeat - otherHeat) / 3, 0, colliders[i].heat.burnThreshold);
+                            float deltaHeat = Mathf.Clamp((heat.currentHeat - otherHeat.currentHeat) / 3, 0, colliders[i].heat.burnThreshold);
                             colliders[i].heat.currentHeat += 0.01f * deltaHeat;
                             
                             //heat.currentHeat -= 0.05f * deltaHeat;
+                        }
+                        else if(otherHeat.burning && heat.currentHeat < otherHeat.currentHeat && heat.currentHeat <= otherHeat.burnThreshold)
+                        {
+                            float deltaHeat = Mathf.Clamp((otherHeat.currentHeat - heat.currentHeat) / 3, 0, heat.burnThreshold);
+                            heat.currentHeat += 0.01f * deltaHeat;
                         }
                         if(heat.burning && !colliders[i].heat.burning)
                         {
                             colliders[i].heat.currentHeat += 6f;
                         }
+                        else if(otherHeat.burning && !heat.burning)
+                        {
+                            heat.currentHeat += 6f;
+                        }
+
                     }
                 }
             }
