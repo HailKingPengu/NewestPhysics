@@ -29,7 +29,9 @@ namespace GXPEngine.GameInst.Heat
                 {
                     if(child is HeatComponent heat)
                     {
-                        
+                        HeatComponent otherHeat = child as HeatComponent;
+                        otherHeat.currentHeat = otherHeat.burnThreshold;
+                        otherHeat.burning = true;
                     }
                 }
             }
