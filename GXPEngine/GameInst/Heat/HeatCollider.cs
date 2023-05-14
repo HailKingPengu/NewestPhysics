@@ -45,8 +45,8 @@ namespace GXPEngine.Fire
 
         public void CalculateCurrent()
         {
-            max = new Vec2(50 * owner.shapes[0].scaleX, 50 * owner.shapes[0].scaleY);
-            min = new Vec2(-50 * owner.shapes[0].scaleX, -50 * owner.shapes[0].scaleY);
+            //max = new Vec2(50 * owner.shapes[0].scaleX, 50 * owner.shapes[0].scaleY);
+            //min = new Vec2(-50 * owner.shapes[0].scaleX, -50 * owner.shapes[0].scaleY);
 
             //Console.WriteLine(max + " - " + min);
 
