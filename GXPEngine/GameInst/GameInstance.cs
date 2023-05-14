@@ -78,7 +78,7 @@ namespace GXPEngine.GameInst
             heatColliders = new List<HeatCollider>();
 
 
-            AAAs = new VoltPolygon[70];
+            AAAs = new VoltPolygon[7];
 
             //physicsWorld = new VoltWorld();
             //AAAs = new VoltPolygon[5];
@@ -88,7 +88,7 @@ namespace GXPEngine.GameInst
 
             List<HeatComponent> components = new List<HeatComponent>();
 
-            for (int i = 0; i < 70; i++)
+            for (int i = 0; i < 7; i++)
             {
                 var AAA = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-10, -10), new Vec2(-10, 10), new Vec2(10, 10), new Vec2(10, -10) });
                 AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { AAA }));
@@ -126,7 +126,9 @@ namespace GXPEngine.GameInst
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { f }));
 
             player = physicsWorld.CreateCircleWorldSpace(new Vec2(500, 200), 20, 0.01f, 0.95f, 0);
-            AddChild(physicsWorld.CreateDynamicBody(new Vec2(500, 200), 0, new VoltShape[] { player }));
+            VoltBody playerBody = physicsWorld.CreateDynamicBody(new Vec2(500, 200), 0, new VoltShape[] { player });
+            //playerBody. = false;
+            AddChild(playerBody);
 
             playerController = new PlayerController(physicsWorld, this);
             player.AddChild(playerController);

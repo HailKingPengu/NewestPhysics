@@ -13,8 +13,8 @@ namespace GXPEngine.GameInst
         {
             SetOrigin(width / 2, height / 2);
 
-            width = 64;
-            height = 64;
+            width = 70;
+            height = 70;
 
             SetCycle(4, 4, 8);
         }
