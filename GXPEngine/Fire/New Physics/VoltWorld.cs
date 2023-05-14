@@ -526,7 +526,14 @@ namespace Volatile
             VoltShape.OrderShapes(ref sa, ref sb);
             Manifold manifold = Collision.Dispatch(this, sa, sb);
             if (manifold != null)
-                this.manifolds.Add(manifold);
+                CollisionFound(manifold);
+        }
+        private void CollisionFound(Manifold manifold)
+        {
+            this.manifolds.Add(manifold);
+
+            manifold.ShapeA.Body.OnCollision(manifold.ShapeB.Body);
+            manifold.ShapeB.Body.OnCollision(manifold.ShapeA.Body);
         }
 
         private void UpdateCollision()

@@ -40,7 +40,7 @@ namespace GXPEngine.GameInst
 
 
         #region Editor Vars
-        bool isEditor = true;
+        bool isEditor = false;
         bool poly = true;
         int clicks = 0;
         Vec2[] points = new Vec2[4];
