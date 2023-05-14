@@ -520,7 +520,7 @@ namespace Volatile
           VoltShape sa,
           VoltShape sb)
         {
-            if (sa.AABB.Intersect(sb.AABB))
+            if (sa.AABB.Intersect(sb.AABB) == false)
                 return;
 
             VoltShape.OrderShapes(ref sa, ref sb);
@@ -528,10 +528,10 @@ namespace Volatile
             if (manifold != null)
                 CollisionFound(manifold);
         }
-
         private void CollisionFound(Manifold manifold)
         {
             this.manifolds.Add(manifold);
+
             manifold.ShapeA.Body.OnCollision(manifold.ShapeB.Body);
             manifold.ShapeB.Body.OnCollision(manifold.ShapeA.Body);
         }

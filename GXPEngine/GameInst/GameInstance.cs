@@ -40,14 +40,13 @@ namespace GXPEngine.GameInst
 
 
         #region Editor Vars
-        bool isEditor = true;
+        bool isEditor = false;
         bool poly = true;
         int clicks = 0;
         Vec2[] points = new Vec2[4];
         Vec2 min;
         Vec2 max;
         Vec2 center;
-        bool testing;
 
         #endregion
 
@@ -243,14 +242,7 @@ namespace GXPEngine.GameInst
 
                     }
                 }
-
-                if (Input.GetKeyDown(Key.ENTER))
-                {
-                    testing = !testing;
-                }
-
-                if(testing)
-                    physicsWorld.RunUpdate();
+                physicsWorld.RunUpdate();
                 return;
             }
             //Console.WriteLine("FUCK");
