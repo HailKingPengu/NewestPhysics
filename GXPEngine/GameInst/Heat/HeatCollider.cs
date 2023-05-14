@@ -62,7 +62,7 @@ namespace GXPEngine.Fire
                 Clear(255, 0, 50, 150);
             }
 
-            for(int i = 0; i < colliders.Count; i++)
+            for(int i = colliders.IndexOf(this) + 1; i < colliders.Count; i++)
             {
                 if (colliders[i] != null || colliders[i] != this)
                 {
