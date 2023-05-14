@@ -10,7 +10,7 @@ using Volatile;
 
 namespace GXPEngine.GameInst.Heat
 {
-    internal class FireballDestroyer
+    internal class FireballDestroyer : GameObject
     {
 
         VoltBody fireball;
@@ -21,7 +21,7 @@ namespace GXPEngine.GameInst.Heat
             this.fireball = fireball;
         }
 
-        public void update()
+        public void Update()
         {
             if (fireball.Collision(out VoltBody body))
             {
@@ -35,10 +35,11 @@ namespace GXPEngine.GameInst.Heat
                         otherHeat.burning = true;
                     }
                 }
+                (parent.parent.parent as GameInstance).physicsWorld.RemoveBody(fireball);
+                fireball.Remove();
+                fireball.LateDestroy();
+                LateDestroy();
             }
-            //check if has collided?
-            //if(fireball)
         }
-
     }
 }

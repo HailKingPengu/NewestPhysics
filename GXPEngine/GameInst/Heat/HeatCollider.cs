@@ -107,7 +107,7 @@ namespace GXPEngine.Fire
                 Clear(255, 0, 50, 150);
             }
 
-            Text(heat.currentHeat.ToString() + "\n" + heat.burnThreshold.ToString());
+            Text(heat.currentHeat.ToString() + "\n" + heat.burnThreshold.ToString() + "\n" + heat.timer.ToString() + "\n" + heat.burnTime.ToString());
         }
     }
 }

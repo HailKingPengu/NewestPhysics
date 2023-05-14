@@ -18,7 +18,7 @@ namespace GXPEngine.GameInst
 
         //public EasyDraw debugger;
 
-        VoltWorld physicsWorld;
+        public VoltWorld physicsWorld;
 
         List<Pivot> layers;
 
@@ -78,7 +78,7 @@ namespace GXPEngine.GameInst
             heatColliders = new List<HeatCollider>();
 
 
-            AAAs = new VoltPolygon[30];
+            AAAs = new VoltPolygon[70];
 
             //physicsWorld = new VoltWorld();
             //AAAs = new VoltPolygon[5];
@@ -88,7 +88,7 @@ namespace GXPEngine.GameInst
 
             List<HeatComponent> components = new List<HeatComponent>();
 
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 70; i++)
             {
                 var AAA = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-15, -15), new Vec2(-15, 15), new Vec2(15, 15), new Vec2(15, -15) });
                 AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { AAA }));
