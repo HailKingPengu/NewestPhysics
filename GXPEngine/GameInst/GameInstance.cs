@@ -18,7 +18,7 @@ namespace GXPEngine.GameInst
 
         //public EasyDraw debugger;
 
-        VoltWorld physicsWorld;
+        public VoltWorld physicsWorld;
 
         List<Pivot> layers;
 
@@ -82,7 +82,7 @@ namespace GXPEngine.GameInst
             heatColliders = new List<HeatCollider>();
 
 
-            AAAs = new VoltPolygon[30];
+            AAAs = new VoltPolygon[70];
 
             //physicsWorld = new VoltWorld();
             //AAAs = new VoltPolygon[5];
@@ -92,9 +92,9 @@ namespace GXPEngine.GameInst
 
             List<HeatComponent> components = new List<HeatComponent>();
 
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 70; i++)
             {
-                var AAA = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-15, -15), new Vec2(-15, 15), new Vec2(15, 15), new Vec2(15, -15) });
+                var AAA = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-10, -10), new Vec2(-10, 10), new Vec2(10, 10), new Vec2(10, -10) });
                 AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { AAA }));
 
 
@@ -136,7 +136,7 @@ namespace GXPEngine.GameInst
             player.AddChild(playerController);
             playerController.Set();
 
-            playerSprite = new PlayerSprite("../../Assets/doof.png");
+            playerSprite = new PlayerSprite("../../Assets/freg.png");
             playerController.AddChild(playerSprite);
 
 
@@ -316,6 +316,8 @@ namespace GXPEngine.GameInst
                 {
                     heatCol.CalculateCurrent();
                 }
+
+
                 foreach (HeatCollider heatCol in heatColliders)
                 {
                     heatCol.Collide(heatColliders);

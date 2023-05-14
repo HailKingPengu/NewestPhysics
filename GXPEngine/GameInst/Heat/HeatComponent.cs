@@ -21,6 +21,12 @@ namespace GXPEngine.Fire
 
         public bool burning;
 
+        public int burnTime;
+        public int timer;
+
+        //in millis
+        int baseBurnTime = 5000;
+
         public HeatComponent(VoltBody owner, float materialThreshold, bool startBurning)
         {
 
@@ -30,6 +36,8 @@ namespace GXPEngine.Fire
             this.owner = owner;
 
             burnThreshold = materialThreshold * owner.shapes[0].bodySpaceAABB.Area;
+
+            burnTime = (int)(30 * Mathf.Sqrt((materialThreshold * owner.shapes[0].bodySpaceAABB.Area) * 4)) + baseBurnTime;
 
             burning = startBurning;
 
@@ -67,13 +75,22 @@ namespace GXPEngine.Fire
             //    colliderChild.Collide(new List<HeatCollider>());
             //}
 
-            if(currentHeat > burnThreshold)
+            if(currentHeat >= burnThreshold)
             {
                 burning = true;
+
+                timer += Time.deltaTime;
             }
             if(!burning)
             {
                 currentHeat *= 0.999f;
+            }
+
+            if(timer > burnTime)
+            {
+                burning = false;
+                LateRemove();
+                LateDestroy();
             }
         }
 
