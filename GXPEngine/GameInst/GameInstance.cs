@@ -40,13 +40,17 @@ namespace GXPEngine.GameInst
 
 
         #region Editor Vars
-        bool isEditor = false;
-        bool poly = true;
+        bool isEditor = true;
+        bool poly = false;
         int clicks = 0;
         Vec2[] points = new Vec2[4];
         Vec2 min;
         Vec2 max;
         Vec2 center;
+        float radius;
+        bool testing;
+        bool isStatic = false;
+        GameObject lastAdded;
 
         #endregion
 
@@ -178,29 +182,50 @@ namespace GXPEngine.GameInst
         {
             if (isEditor)
             {
+                if (Input.GetKeyDown(Key.LEFT_SHIFT))
+                {
+                    poly = !poly;
+                }
+                if (Input.GetKey(Key.LEFT_CTRL))
+                {
+                    if (Input.GetKey(Key.S))
+                    {
+                        PhysicsObject obj;
+                        foreach (VoltBody body in GetChildren())
+                        {
+                            obj = new PhysicsObject();
+                            if (body.shapes[0] is VoltCircle circle)
+                            {
+                                obj.radians = body.Angle;
+                                obj.radius = circle.radius;
+                                obj.position = body.Position;
+                            }
+                            else if (body.shapes[0] is VoltPolygon poly)
+                            {
+                                obj.position = body.Position;
+                                obj.vertices = poly.bodyVertices;
+                                obj.radians = body.Angle;
+                            }
+                            level.objects.Add(obj);
+                        }
+
+                        Serializer.WriteObject("level.dat", level);
+                    }
+                    else if (Input.GetKey(Key.Z))
+                    {
+                        RemoveChild(lastAdded);
+                    }
+                }
                 if (Input.GetKeyDown(Key.S))
                 {
-                    PhysicsObject obj;
-                    foreach (VoltBody body in GetChildren())
-                    {
-                        obj = new PhysicsObject();
-                        if (body.shapes[0] is VoltCircle circle)
-                        {
-                            obj.radians = body.Angle;
-                            obj.radius = circle.radius;
-                            obj.position = body.Position;
-                        }
-                        else if (body.shapes[0] is VoltPolygon poly)
-                        {
-                            obj.position = body.Position;
-                            obj.vertices = poly.bodyVertices;
-                            obj.radians = body.Angle;
-                        }
-                        level.objects.Add(obj);
-                    }
+                    isStatic = !isStatic;
+                }
 
-                    Serializer.WriteObject("level.dat", level);
-
+                if (Input.GetKey(Key.R))
+                {
+                    var last = (lastAdded as VoltBody);
+                    last.Angle += 0.01f;
+                    last.Facing = VoltMath.Polar(last.Angle);
                 }
 
                 if (Input.GetMouseButtonDown(0))
@@ -230,7 +255,8 @@ namespace GXPEngine.GameInst
                                     points[3] = new Vec2(max.x, min.y);
                                     center = new Vec2(min.x + (max.x - min.x) / 2, min.y + (max.y - min.y) / 2);
                                     var a = physicsWorld.CreatePolygonWorldSpace(points);
-                                    AddChild(physicsWorld.CreateDynamicBody(center, 0, a));
+                                    lastAdded = isStatic ? physicsWorld.CreateStaticBody(center, 0, a) : physicsWorld.CreateDynamicBody(center, 0, a);
+                                    AddChild(lastAdded);
 
                                     AddHeatComponentPolygon(a, false);
 
@@ -241,8 +267,37 @@ namespace GXPEngine.GameInst
 
 
                     }
+                    else
+                    {
+                        switch (clicks)
+                        {
+                            case 0:
+                                {
+                                    center = new Vec2(Input.mouseX, Input.mouseY);
+                                    clicks++;
+                                    break;
+                                }
+                            case 1:
+                                {
+                                    radius = Mathf.Abs(Vec2.Distance(center, new Vec2(Input.mouseX, Input.mouseY)));
+                                    var b = physicsWorld.CreateCircleWorldSpace(center, radius);
+                                    lastAdded = isStatic ? physicsWorld.CreateStaticBody(center, 0, b) : physicsWorld.CreateDynamicBody(center, 0, b);
+                                    AddChild(lastAdded);
+                                    clicks = 0;
+                                    break;
+                                }
+                        }
+                    }
                 }
-                physicsWorld.RunUpdate();
+                if (testing)
+                {
+
+                    physicsWorld.RunUpdate();
+                }
+                if (Input.GetKeyDown(Key.ENTER))
+                {
+                    testing = !testing;
+                }
                 return;
             }
             //Console.WriteLine("FUCK");

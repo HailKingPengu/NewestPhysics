@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GXPEngine.Fire.Editor
 {
-    public class EditorLevel : Pivot
+    public class EditorLevel
     {
         public void Update()
         {
