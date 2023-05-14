@@ -19,6 +19,7 @@
 */
 
 using GXPEngine;
+using GXPEngine.Managers;
 using System;
 using System.Runtime.InteropServices;
 
@@ -418,7 +419,7 @@ namespace Volatile
                 this.shapes[i].AssignBody(this);
                 AddChild(this.shapes[i]);
             }
-
+            game.OnAfterStep += LateReset;
 #if DEBUG
             this.IsInitialized = true;
 #endif
@@ -547,7 +548,7 @@ namespace Volatile
             collidedBody = other;
         }
 
-        public void Update()
+        public void LateReset()
         {
             collided = false;
             collidedBody = null;
