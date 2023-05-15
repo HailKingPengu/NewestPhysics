@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace GXPEngine.Fire.Editor
 {
     [DataContract]
+    [KnownType(typeof(PhysicsObject))]
     public class Level
     {
         [DataMember]

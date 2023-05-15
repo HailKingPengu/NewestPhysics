@@ -48,6 +48,11 @@ namespace GXPEngine.Fire
 
         public void CalculateCurrent()
         {
+
+
+
+
+
             //Console.WriteLine(max + " - " + min);
 
             currentMax = max + new Vec2(owner.x, owner.y);

@@ -10,7 +10,7 @@ using Volatile;
 
 namespace GXPEngine.GameInst
 {
-    internal class GameInstance : Pivot
+    public class GameInstance : Pivot
     {
         int initTicks = 10;
         public bool paused;
@@ -40,7 +40,8 @@ namespace GXPEngine.GameInst
 
 
         #region Editor Vars
-        bool isEditor = false;
+
+        bool isEditor = true;
         bool poly = false;
         int clicks = 0;
         Vec2[] points = new Vec2[4];
@@ -190,7 +191,7 @@ namespace GXPEngine.GameInst
                 }
                 if (Input.GetKey(Key.LEFT_CTRL))
                 {
-                    if (Input.GetKey(Key.S))
+                    if (Input.GetKeyDown(Key.S))
                     {
                         PhysicsObject obj;
                         foreach (VoltBody body in GetChildren())
@@ -201,18 +202,25 @@ namespace GXPEngine.GameInst
                                 obj.radians = body.Angle;
                                 obj.radius = circle.radius;
                                 obj.position = body.Position;
+                                obj.isStatic = body.IsStatic;
                             }
                             else if (body.shapes[0] is VoltPolygon poly)
                             {
                                 obj.position = body.Position;
                                 obj.vertices = poly.bodyVertices;
                                 obj.radians = body.Angle;
+                                obj.isStatic = body.IsStatic;
                             }
                             level.objects.Add(obj);
                         }
 
                         Serializer.WriteObject("level.dat", level);
                     }
+                    if (Input.GetKeyDown(Key.L))
+                    {
+                        EditorLevel.LoadLevel("level.dat", this);
+                    }
+
                     else if (Input.GetKey(Key.Z))
                     {
                         RemoveChild(lastAdded);
@@ -367,14 +375,14 @@ namespace GXPEngine.GameInst
 
         }
 
-        void AddHeatComponentPolygon(VoltPolygon poly, bool startBurning)
+        public void AddHeatComponentPolygon(VoltPolygon poly, bool startBurning)
         {
             HeatComponent heat = new HeatComponent(poly.Body, 2, startBurning);
             poly.AddChild(heat);
             heatColliders.Add(heat.returnCollider());
         }
 
-        void AddHeatComponentCircle(VoltCircle poly, bool startBurning)
+        public void AddHeatComponentCircle(VoltCircle poly, bool startBurning)
         {
             HeatComponent heat = new HeatComponent(poly.Body, 2, startBurning);
             poly.AddChild(heat);
