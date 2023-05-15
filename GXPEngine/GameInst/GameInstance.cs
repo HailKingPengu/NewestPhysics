@@ -82,7 +82,7 @@ namespace GXPEngine.GameInst
             heatColliders = new List<HeatCollider>();
 
 
-            AAAs = new VoltPolygon[7];
+            AAAs = new VoltPolygon[70];
 
             //physicsWorld = new VoltWorld();
             //AAAs = new VoltPolygon[5];
@@ -92,7 +92,7 @@ namespace GXPEngine.GameInst
 
             List<HeatComponent> components = new List<HeatComponent>();
 
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 70; i++)
             {
                 var AAA = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-10, -10), new Vec2(-10, 10), new Vec2(10, 10), new Vec2(10, -10) });
                 AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { AAA }));

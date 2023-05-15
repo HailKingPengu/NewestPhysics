@@ -39,15 +39,15 @@ namespace GXPEngine.Fire
             Clear(255, 100, 0, 100);
 
             TextAlign(CenterMode.Min, CenterMode.Min);
+
+            max = new Vec2(50 * owner.shapes[0].scaleX, 50 * owner.shapes[0].scaleY);
+            min = new Vec2(-50 * owner.shapes[0].scaleX, -50 * owner.shapes[0].scaleY);
         }
 
         //extraY = -0.02 (x-4.15)^(4)+6;
 
         public void CalculateCurrent()
         {
-            //max = new Vec2(50 * owner.shapes[0].scaleX, 50 * owner.shapes[0].scaleY);
-            //min = new Vec2(-50 * owner.shapes[0].scaleX, -50 * owner.shapes[0].scaleY);
-
             //Console.WriteLine(max + " - " + min);
 
             currentMax = max + new Vec2(owner.x, owner.y);
@@ -69,6 +69,7 @@ namespace GXPEngine.Fire
 
                     //if (colliders[i].owner.AABB.Left - 20 <= owner.AABB.Right + 20 && colliders[i].owner.AABB.Right + 20 >= owner.AABB.Left - 20 &&
                     //    colliders[i].owner.AABB.Top - 20 <= owner.AABB.Bottom + 20 && colliders[i].owner.AABB.Bottom + 20 <= owner.AABB.Top - 20)
+
 
                     if (colliders[i].currentMin.x <= currentMax.x && colliders[i].currentMax.x >= currentMin.x &&
                         colliders[i].currentMin.y <= currentMax.y && colliders[i].currentMax.y >= currentMin.y)
