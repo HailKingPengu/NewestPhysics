@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -17,5 +18,7 @@ public class PhysicsObject : LevelObject
     public Vec2[] vertices;
     [DataMember]
     public float radius;
+    [DataMember]
+    public bool isStatic;
 }
 

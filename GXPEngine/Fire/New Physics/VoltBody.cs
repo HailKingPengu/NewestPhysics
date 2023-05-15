@@ -431,6 +431,7 @@ namespace Volatile
                 this.history.Store(this.currentState);
             this.Integrate();
             this.OnPositionUpdated();
+            //Console.WriteLine(LinearVelocity);
         }
 
         internal void AssignWorld(VoltWorld world)

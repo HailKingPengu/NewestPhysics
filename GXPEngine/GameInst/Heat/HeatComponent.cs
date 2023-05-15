@@ -89,8 +89,8 @@ namespace GXPEngine.Fire
             if(timer > burnTime)
             {
                 burning = false;
-                LateRemove();
-                LateDestroy();
+                //LateRemove();
+               owner.LateDestroy();
             }
         }
 

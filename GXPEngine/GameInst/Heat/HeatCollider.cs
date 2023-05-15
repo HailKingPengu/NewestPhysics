@@ -39,14 +39,15 @@ namespace GXPEngine.Fire
             Clear(255, 100, 0, 100);
 
             TextAlign(CenterMode.Min, CenterMode.Min);
+            max = new Vec2(50 * owner.shapes[0].scaleX, 50 * owner.shapes[0].scaleY);
+            min = new Vec2(-50 * owner.shapes[0].scaleX, -50 * owner.shapes[0].scaleY);
         }
 
         //extraY = -0.02 (x-4.15)^(4)+6;
 
         public void CalculateCurrent()
         {
-            //max = new Vec2(50 * owner.shapes[0].scaleX, 50 * owner.shapes[0].scaleY);
-            //min = new Vec2(-50 * owner.shapes[0].scaleX, -50 * owner.shapes[0].scaleY);
+
 
             //Console.WriteLine(max + " - " + min);
 
