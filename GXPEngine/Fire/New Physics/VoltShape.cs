@@ -23,6 +23,7 @@ using UnityEngine;
 #endif
 
 using GXPEngine;
+using GXPEngine.Core;
 using System;
 
 namespace Volatile
@@ -170,12 +171,13 @@ namespace Volatile
         protected void Initialize(
           float density,
           float friction,
-          float restitution)
+          float restitution,
+          int file)
         {
             this.Density = density;
             this.Friction = friction;
             this.Restitution = restitution;
-
+            this.currentFrame = file;
 #if DEBUG
             this.IsInitialized = true;
 #endif

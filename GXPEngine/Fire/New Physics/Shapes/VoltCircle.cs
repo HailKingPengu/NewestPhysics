@@ -36,9 +36,10 @@ namespace Volatile
           float radius,
           float density,
           float friction,
-          float restitution)
+          float restitution,
+          int fileName = 0)
         {
-            base.Initialize(density, friction, restitution);
+            base.Initialize(density, friction, restitution, fileName);
 
             this.worldSpaceOrigin = worldSpaceOrigin;
             this.radius = radius;
@@ -73,7 +74,7 @@ namespace Volatile
     private Vec2 bodySpaceOrigin;
     #endregion
 
-    public VoltCircle() : base("circle.png")
+    public VoltCircle( ) : base("circle.png")
     {
       this.Reset();
     }

@@ -174,7 +174,7 @@ namespace GXPEngine.GameInst
             //var f = physicsWorld.CreateCircleWorldSpace(new Vec2(600, 200), 20);
             //AddChild(physicsWorld.CreateStaticBody(new Vec2(600, 200), 0, new VoltShape[] { f }));
 
-            player = physicsWorld.CreateCircleWorldSpace(new Vec2(500, 200), 50, 0.01f, 0.95f, 0);
+            player = physicsWorld.CreateCircleWorldSpace(new Vec2(500, 200), 50, 0, 0.01f, 0.95f, 0);
             VoltBody playerBody = physicsWorld.CreateDynamicBody(new Vec2(500, 200), 0, new VoltShape[] { player });
             //playerBody. = false;
             AddChild(playerBody);

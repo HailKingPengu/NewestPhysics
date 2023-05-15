@@ -33,11 +33,12 @@ namespace Volatile
         #region Factory Functions
         internal void InitializeFromWorldVertices(
           Vec2[] vertices,
+          int frame,
           float density,
           float friction,
           float restitution)
         {
-            base.Initialize(density, friction, restitution);
+            base.Initialize(density, friction, restitution, frame);
             this.UpdateArrays(vertices.Length);
 
             this.countWorld = vertices.Length;
@@ -55,11 +56,12 @@ namespace Volatile
 
         internal void InitializeFromBodyVertices(
           Vec2[] vertices,
+          int frame,
           float density,
           float friction,
           float restitution)
         {
-            base.Initialize(density, friction, restitution);
+            base.Initialize(density, friction, restitution, frame);
             this.UpdateArrays(vertices.Length);
 
             // World vertices will be computed on position update
