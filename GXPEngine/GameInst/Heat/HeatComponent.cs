@@ -89,8 +89,8 @@ namespace GXPEngine.Fire
             if(timer > burnTime)
             {
                 burning = false;
-                //LateRemove();
-               owner.LateDestroy();
+               (owner.parent as GameInstance).physicsWorld.RemoveBody(owner);
+                owner.LateDestroy();
             }
         }
 

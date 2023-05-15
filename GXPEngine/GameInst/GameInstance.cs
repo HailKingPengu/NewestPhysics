@@ -191,7 +191,7 @@ namespace GXPEngine.GameInst
                 }
                 if (Input.GetKey(Key.LEFT_CTRL))
                 {
-                    if (Input.GetKey(Key.S))
+                    if (Input.GetKeyDown(Key.S))
                     {
                         PhysicsObject obj;
                         foreach (VoltBody body in GetChildren())
@@ -216,7 +216,7 @@ namespace GXPEngine.GameInst
 
                         Serializer.WriteObject("level.dat", level);
                     }
-                    if (Input.GetKey(Key.L))
+                    if (Input.GetKeyDown(Key.L))
                     {
                         EditorLevel.LoadLevel("level.dat", this);
                     }
