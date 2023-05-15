@@ -157,12 +157,14 @@
     <Content Include="Assets\Background1.png" />
     <Content Include="Assets\Background2.jpg" />
     <Content Include="Assets\Background3.gif" />
+    <Content Include="Assets\crateae.png" />
     <Content Include="Assets\GameBGBig.png" />
     <Content Include="Assets\crate.png" />
     <Content Include="Assets\doof.png" />
     <Content Include="Assets\freg.png" />
     <Content Include="Assets\GameBG.png" />
     <Content Include="Assets\mainmenu.png" />
+    <Content Include="Assets\metalcrateae.png" />
     <Content Include="Assets\pause.png" />
     <Content Include="Assets\settings.png" />
     <Content Include="Assets\songPlaceholder.mp3" />

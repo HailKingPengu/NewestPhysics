@@ -11,18 +11,19 @@ public class MyGame : Game
 
 
 
-    public MyGame() : base(1920, 1080, true)
+    public MyGame() : base(1920, 1080, false)
     {
 
         sceneManager = new SceneManager();
         AddChild(sceneManager);
 
+        ShowMouse(true);
 
     }
 
     void Update()
     {
-
+        ShowMouse(true);
     }
 
     static void Main()
