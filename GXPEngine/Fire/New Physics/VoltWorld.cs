@@ -139,6 +139,7 @@ namespace Volatile
         /// </summary>
         public VoltPolygon CreatePolygonWorldSpace(
           Vec2[] worldVertices,
+          int frame = 0,
           float density = VoltConfig.DEFAULT_DENSITY,
           float friction = VoltConfig.DEFAULT_FRICTION,
           float restitution = VoltConfig.DEFAULT_RESTITUTION)
@@ -146,6 +147,7 @@ namespace Volatile
             VoltPolygon polygon = (VoltPolygon)this.polygonPool.Allocate();
             polygon.InitializeFromWorldVertices(
               worldVertices,
+              frame,
               density,
               friction,
               restitution);
@@ -157,6 +159,7 @@ namespace Volatile
         /// </summary>
         public VoltPolygon CreatePolygonBodySpace(
           Vec2[] bodyVertices,
+          int frame = 0,
           float density = VoltConfig.DEFAULT_DENSITY,
           float friction = VoltConfig.DEFAULT_FRICTION,
           float restitution = VoltConfig.DEFAULT_RESTITUTION)
@@ -164,6 +167,7 @@ namespace Volatile
             VoltPolygon polygon = (VoltPolygon)this.polygonPool.Allocate();
             polygon.InitializeFromBodyVertices(
               bodyVertices,
+              frame,
               density,
               friction,
               restitution);
@@ -176,6 +180,7 @@ namespace Volatile
         public VoltCircle CreateCircleWorldSpace(
           Vec2 worldSpaceOrigin,
           float radius,
+          int fileName = 0,
           float density = VoltConfig.DEFAULT_DENSITY,
           float friction = VoltConfig.DEFAULT_FRICTION,
           float restitution = VoltConfig.DEFAULT_RESTITUTION)
@@ -186,7 +191,8 @@ namespace Volatile
               radius,
               density,
               friction,
-              restitution);
+              restitution,
+              fileName);
             return circle;
         }
 
@@ -614,7 +620,7 @@ namespace Volatile
             }
         }
 
-        private VoltCircle CreateCircle()
+        private VoltCircle CreateCircle(string filename)
         {
             return new VoltCircle();
         }

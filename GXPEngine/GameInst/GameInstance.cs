@@ -41,7 +41,7 @@ namespace GXPEngine.GameInst
 
         #region Editor Vars
 
-        bool isEditor = true;
+        bool isEditor = false;
         bool poly = false;
         int clicks = 0;
         Vec2[] points = new Vec2[4];
@@ -130,7 +130,7 @@ namespace GXPEngine.GameInst
             var f = physicsWorld.CreateCircleWorldSpace(new Vec2(600, 200), 20);
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(600, 200), 0, new VoltShape[] { f }));
 
-            player = physicsWorld.CreateCircleWorldSpace(new Vec2(500, 200), 20, 0.01f, 0.95f, 0);
+            player = physicsWorld.CreateCircleWorldSpace(new Vec2(500, 200), 20, 0, 0.01f, 0.95f, 0);
             VoltBody playerBody = physicsWorld.CreateDynamicBody(new Vec2(500, 200), 0, new VoltShape[] { player });
             //playerBody. = false;
             AddChild(playerBody);
