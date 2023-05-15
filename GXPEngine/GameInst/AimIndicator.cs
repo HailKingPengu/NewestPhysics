@@ -21,6 +21,8 @@ namespace GXPEngine.GameInst
         public AimIndicator(VoltBody playerBody) : base(1200, 1200)
         {
             SetOrigin(width / 2, height / 2);
+            scale = 0.4333f;
+
             this.playerBody = playerBody;
 
             StrokeWeight(3);
@@ -58,13 +60,13 @@ namespace GXPEngine.GameInst
 
             steps[0] = new Vec2(Input.mouseX - offsetX - playerBody.x, Input.mouseY - playerBody.y).normalized * stepLength;
 
-            Ellipse(width / 2 + steps[0].x, height / 2 + steps[0].y, 10, 10);
+            Ellipse((width / scale) / 2 + steps[0].x, (height / scale) / 2 + steps[0].y, 10, 10);
 
             for (int i = 1; i < steps.Length; i++)
             {
                 steps[i] = steps[i-1] + (steps[0] * 0.71f) + i * new Vec2(0, addedY);
 
-                Ellipse(width / 2 + steps[i].x, height / 2 + steps[i].y, 10 - (int)(0.8 * i), 10 - (int)(0.8 * i));
+                Ellipse((width / scale) / 2 + steps[i].x, (height / scale) / 2 + steps[i].y, 10 - (int)(0.8 * i), 10 - (int)(0.8 * i));
             }
         }
 

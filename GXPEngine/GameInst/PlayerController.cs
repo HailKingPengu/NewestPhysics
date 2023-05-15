@@ -62,8 +62,8 @@ namespace GXPEngine.GameInst
 
 
                 if (Input.GetMouseButtonUp(0) &&
-                    Input.mouseX - offsetX < playerBody.x + 32 && Input.mouseX - offsetX > playerBody.x - 32 &&
-                    Input.mouseY < playerBody.y + 32 && Input.mouseY > playerBody.y - 32)
+                    Input.mouseX - offsetX < playerBody.x + 60 && Input.mouseX - offsetX > playerBody.x - 60 &&
+                    Input.mouseY < playerBody.y + 60 && Input.mouseY > playerBody.y - 60)
                 {
                     if (!aiming)
                     {
@@ -85,7 +85,7 @@ namespace GXPEngine.GameInst
                 if (Input.GetMouseButton(0) && !aiming)
                 {
                     if (new Vec2(playerBody.LinearVelocity.x, 0).length < 30)
-                        playerBody.AddForce(new Vec2(Mathf.Clamp((mousePos.x - playerPos.x) / 50, -1, 1), 0));
+                        playerBody.AddForce(new Vec2(Mathf.Clamp((mousePos.x - playerPos.x) / 5, -10, 10), 0));
                 }
                 else
                 {
@@ -105,23 +105,23 @@ namespace GXPEngine.GameInst
 
             Vec2 aim = (mousePos - playerPos).normalized;
 
-            var fireball = physicsWorld.CreateCircleWorldSpace(playerPos + aim * 35, 10, 1);
-            gameInstance.AddChild(physicsWorld.CreateDynamicBody(playerPos + aim * 35, 0, new VoltShape[] { fireball }));
+            var fireball = physicsWorld.CreateCircleWorldSpace(playerPos + aim * 70, 10, 40);
+            gameInstance.AddChild(physicsWorld.CreateDynamicBody(playerPos + aim * 70, 0, new VoltShape[] { fireball }));
             HeatComponent fireballHeat = new HeatComponent(fireball.Body, 2, true);
             fireball.AddChild(fireballHeat);
             fireball.AddChild(new FireballDestroyer(fireball.Body));
 
             gameInstance.heatColliders.Add(fireballHeat.returnCollider());
 
-            Vec2 force = ((mousePos - playerPos) * 8f);
+            Vec2 force = ((mousePos - playerPos) * 320f);
 
-            if (force.length < 1500)
+            if (force.length < 60000)
             {
-                force *= 1500 / force.length;
+                force *= 60000 / force.length;
             }
-            else if (force.length > 2500)
+            else if (force.length > 100000)
             {
-                force *= 2500 / force.length;
+                force *= 100000 / force.length;
             }
             fireball.Body.AddForce(force);
 
