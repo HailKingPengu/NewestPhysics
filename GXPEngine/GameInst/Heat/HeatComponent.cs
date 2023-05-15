@@ -37,7 +37,7 @@ namespace GXPEngine.Fire
 
             burnThreshold = materialThreshold * owner.shapes[0].bodySpaceAABB.Area;
 
-            burnTime = (int)(30 * Mathf.Sqrt((materialThreshold * owner.shapes[0].bodySpaceAABB.Area) * 4)) + baseBurnTime;
+            burnTime = (int)(10 * Mathf.Sqrt((materialThreshold * owner.shapes[0].bodySpaceAABB.Area) * 4)) + baseBurnTime;
 
             burning = startBurning;
 

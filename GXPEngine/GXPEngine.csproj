@@ -50,6 +50,7 @@
     <Compile Include="Fire\Sound\Environmental Sound System.cs" />
     <Compile Include="Fire\Sound\Player Sound System.cs" />
     <Compile Include="Fire\Sound\SoundSystem.cs" />
+    <Compile Include="GameInst\Heat\ButtonController.cs" />
     <Compile Include="GameInst\Heat\FireballDestroyer.cs" />
     <Compile Include="GameInst\Heat\HeatCollider.cs" />
     <Compile Include="GameInst\Heat\HeatComponent.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Fire\Physics\Vec2.cs" />
     <Compile Include="GameInst\AimIndicator.cs" />
     <Compile Include="GameInst\GameInstance.cs" />
+    <Compile Include="GameInst\Heat\MovingDoorController.cs" />
     <Compile Include="GameInst\PlayerController.cs" />
     <Compile Include="GameInst\PlayerSprite.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
@@ -149,14 +151,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Assets\mainmenu.pdn" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Background1.png" />
     <Content Include="Assets\Background2.jpg" />
     <Content Include="Assets\Background3.gif" />
+    <Content Include="Assets\GameBGBig.png" />
     <Content Include="Assets\crate.png" />
     <Content Include="Assets\doof.png" />
     <Content Include="Assets\freg.png" />
+    <Content Include="Assets\GameBG.png" />
+    <Content Include="Assets\mainmenu.png" />
+    <Content Include="Assets\pause.png" />
+    <Content Include="Assets\settings.png" />
     <Content Include="Assets\songPlaceholder.mp3" />
     <Content Include="Assets\OverlayBackground.png" />
   </ItemGroup>

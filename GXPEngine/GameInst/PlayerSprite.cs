@@ -11,10 +11,10 @@ namespace GXPEngine.GameInst
 
         public PlayerSprite(string image) : base(image, 1, 1)
         {
-            SetOrigin(width / 2, height / 2);
+            SetOrigin(width / 2, height / 2 + 15);
 
-            width = 70;
-            height = 70;
+            width = 120;
+            height = 120;
 
             SetCycle(4, 4, 8);
         }
