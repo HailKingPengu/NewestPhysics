@@ -169,6 +169,8 @@
     <Content Include="Assets\settings.png" />
     <Content Include="Assets\songPlaceholder.mp3" />
     <Content Include="Assets\OverlayBackground.png" />
+    <Content Include="Assets\sprites.png" />
+    <Content Include="Assets\transparent.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\AmbientSounds\" />

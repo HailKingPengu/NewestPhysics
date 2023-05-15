@@ -95,7 +95,7 @@ namespace Volatile
         internal VoltAABB worldSpaceAABB;
         internal VoltAABB bodySpaceAABB;
 
-        public VoltShape(string filename, int cols = 1, int rows = 1, int frames = -1, bool keepInCache = false, bool addCollider = false) : base(filename, cols, rows, frames, keepInCache, addCollider)
+        public VoltShape(string filename, int cols = 4, int rows = 1, int frames = 4, bool keepInCache = false, bool addCollider = false) : base(filename, cols, rows, frames, keepInCache, addCollider)
         {
             //SetOrigin(width, height);
         }

@@ -130,44 +130,44 @@ namespace GXPEngine.GameInst
             ////e = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
             ////AddChild(physicsWorld.CreateDynamicBody(new Vec2(800, 100), 0, new VoltShape[] { e }));
 
-            var b = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-9600, -120), new Vec2(-9600, 120), new Vec2(9600, 120), new Vec2(9600, -120) });
+            var b = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-9600, -120), new Vec2(-9600, 120), new Vec2(9600, 120), new Vec2(9600, -120) }, 3);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(960, 1020), 0, new VoltShape[] { b }));
 
-            var r = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-230, -10), new Vec2(-230, 10), new Vec2(230, 10), new Vec2(230, -10) });
+            var r = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-230, -10), new Vec2(-230, 10), new Vec2(230, 10), new Vec2(230, -10) }, 2);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(1700, 535), 0, new VoltShape[] { r }));
 
-            var l = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-120, -10), new Vec2(-120, 10), new Vec2(120, 10), new Vec2(120, -10) });
+            var l = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-120, -10), new Vec2(-120, 10), new Vec2(120, 10), new Vec2(120, -10) }, 2);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(1400, 450), 45, new VoltShape[] { l }));
 
-            var le = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-10, -120), new Vec2(-10, 120), new Vec2(10, 120), new Vec2(10, -120) });
+            var le = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-10, -120), new Vec2(-10, 120), new Vec2(10, 120), new Vec2(10, -120) }, 2);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(1900, 400), 0, new VoltShape[] { le }));
 
-            var g = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-150, -100), new Vec2(-150, 100), new Vec2(150, 100), new Vec2(150, -100) });
+            var g = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-150, -100), new Vec2(-150, 100), new Vec2(150, 100), new Vec2(150, -100) }, 2);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(800, 900), Vec2.DegToRad(45), new VoltShape[] { g }));
 
-            var ge = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-100, -100), new Vec2(-100, 100), new Vec2(100, 100), new Vec2(100, -100) });
+            var ge = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-100, -100), new Vec2(-100, 100), new Vec2(100, 100), new Vec2(100, -100) }, 2);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(850, 850), 0, new VoltShape[] { ge }));
 
-            var go = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-150, -100), new Vec2(-150, 100), new Vec2(150, 100), new Vec2(150, -100) });
+            var go = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-150, -100), new Vec2(-150, 100), new Vec2(150, 100), new Vec2(150, -100) }, 2);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(950, 900), Vec2.DegToRad(45), new VoltShape[] { go }));
 
 
-            var d = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-50, -50), new Vec2(-50, 50), new Vec2(50, 50), new Vec2(50, -50) });
+            var d = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-50, -50), new Vec2(-50, 50), new Vec2(50, 50), new Vec2(50, -50) }, 1);
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(1250, 300), 0, new VoltShape[] { d }));
 
-            var e = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-50, -50), new Vec2(-50, 50), new Vec2(50, 50), new Vec2(50, -50) });
+            var e = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-50, -50), new Vec2(-50, 50), new Vec2(50, 50), new Vec2(50, -50) }, 1);
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(1250, 201), 0, new VoltShape[] {e }));
 
-            var u = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-50, -50), new Vec2(-50, 50), new Vec2(50, 50), new Vec2(50, -50) });
+            var u = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-50, -50), new Vec2(-50, 50), new Vec2(50, 50), new Vec2(50, -50) }, 1);
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(1250, 102), 0, new VoltShape[] { u }));
 
 
-            var door = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -220), new Vec2(-25, 220), new Vec2(25, 220), new Vec2(25, -220) });
+            var door = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -220), new Vec2(-25, 220), new Vec2(25, 220), new Vec2(25, -220) },2);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(1300, 750), 0, new VoltShape[] { door }));
             MovingDoorController doorController = new MovingDoorController(door.Body, new Vec2(0, -200), 1000);
             door.AddChild(doorController);
 
-            var button = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-80, -10), new Vec2(-80, 10), new Vec2(80, 10), new Vec2(80, -10) });
+            var button = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-80, -10), new Vec2(-80, 10), new Vec2(80, 10), new Vec2(80, -10) },0);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(1600, 500), 0, new VoltShape[] { button }));
             button.AddChild(new ButtonController(button.Body, doorController));
 
@@ -183,11 +183,11 @@ namespace GXPEngine.GameInst
             player.AddChild(playerController);
             playerController.Set();
 
-            var c = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-90, -20), new Vec2(-90, 20), new Vec2(90, 20), new Vec2(90, -20) });
+            var c = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-90, -20), new Vec2(-90, 20), new Vec2(90, 20), new Vec2(90, -20) }, 2);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(1240, 350), 0, new VoltShape[] { c }));
 
-            playerSprite = new PlayerSprite("../../Assets/freg.png");
-            playerController.AddChild(playerSprite);
+            playerSprite = new PlayerSprite("../../Assets/freg.png", playerBody);
+            AddChild(playerSprite);
 
 
 

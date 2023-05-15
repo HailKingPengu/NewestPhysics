@@ -116,7 +116,7 @@ namespace GXPEngine.Fire
         {
             if (!heat.burning)
             {
-                Clear(255, 100, 0, 100);
+                Clear(255, 100, 0, 0);
             }
             else
             {

@@ -105,7 +105,7 @@ namespace GXPEngine.GameInst
 
             Vec2 aim = (mousePos - playerPos).normalized;
 
-            var fireball = physicsWorld.CreateCircleWorldSpace(playerPos + aim * 70, 10, 40);
+            var fireball = physicsWorld.CreateCircleWorldSpace(playerPos + aim * 70, 10, 1, 40);
             gameInstance.AddChild(physicsWorld.CreateDynamicBody(playerPos + aim * 70, 0, new VoltShape[] { fireball }));
             HeatComponent fireballHeat = new HeatComponent(fireball.Body, 2, true);
             fireball.AddChild(fireballHeat);

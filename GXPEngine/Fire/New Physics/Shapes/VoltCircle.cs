@@ -74,7 +74,7 @@ namespace Volatile
     private Vec2 bodySpaceOrigin;
     #endregion
 
-    public VoltCircle( ) : base("circle.png")
+    public VoltCircle( ) : base("../../Assets/transparent.png")
     {
       this.Reset();
     }
