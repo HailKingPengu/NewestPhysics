@@ -65,9 +65,9 @@ namespace GXPEngine.GameInst
         public GameInstance()
         {
 
-            //background = new Sprite("../../Assets/GameBGBig.png");
-            //AddChild(background);
-            //background.scale = 1;
+            background = new Sprite("../../Assets/GameBGBig.png");
+            AddChild(background);
+            background.scale = 1;
 
             physicsWorld = new VoltWorld();
 
@@ -130,7 +130,7 @@ namespace GXPEngine.GameInst
             ////e = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -25), new Vec2(-25, 25), new Vec2(25, 25), new Vec2(25, -25) });
             ////AddChild(physicsWorld.CreateDynamicBody(new Vec2(800, 100), 0, new VoltShape[] { e }));
 
-            var b = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-9600, -120), new Vec2(-9600, 120), new Vec2(9600, 120), new Vec2(9600, -120) }, 3);
+            var b = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-9600, -120), new Vec2(-9600, 120), new Vec2(9600, 120), new Vec2(9600, -120) }, 2);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(960, 1020), 0, new VoltShape[] { b }));
 
             var r = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-230, -10), new Vec2(-230, 10), new Vec2(230, 10), new Vec2(230, -10) }, 2);
