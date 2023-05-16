@@ -23,7 +23,7 @@ namespace GXPEngine.GameInst
 
             this.pos = pos;
 
-            SetCycle(4, 4, 8);
+            //SetCycle(4, 4, 8);
         }
 
         void Update()
