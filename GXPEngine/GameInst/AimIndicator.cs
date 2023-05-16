@@ -21,7 +21,7 @@ namespace GXPEngine.GameInst
         public AimIndicator(VoltBody playerBody) : base(1200, 1200)
         {
             SetOrigin(width / 2, height / 2);
-            scale = 0.4333f;
+            scale = 0.4333f * 8;
 
             this.playerBody = playerBody;
 
