@@ -24,7 +24,7 @@ namespace GXPEngine.Fire
 
         float extraY;
 
-        public HeatCollider(VoltBody owner, HeatComponent heatComponent, params string[] args) : base(800, 800)
+        public HeatCollider(VoltBody owner, HeatComponent heatComponent, params string[] args) : base(100, 100)
         {
             this.owner = owner;
             heat = heatComponent;
@@ -40,8 +40,8 @@ namespace GXPEngine.Fire
 
             TextAlign(CenterMode.Min, CenterMode.Min);
 
-            max = new Vec2(50 * 8 * owner.shapes[0].scaleX, 50 * 8 * owner.shapes[0].scaleY);
-            min = new Vec2(-50 * 8 *  owner.shapes[0].scaleX, -50 * 8 * owner.shapes[0].scaleY);
+            max = new Vec2(50 * owner.shapes[0].scaleX, 50 * owner.shapes[0].scaleY);
+            min = new Vec2(-50 * owner.shapes[0].scaleX, -50 * owner.shapes[0].scaleY);
         }
 
         //extraY = -0.02 (x-4.15)^(4)+6;

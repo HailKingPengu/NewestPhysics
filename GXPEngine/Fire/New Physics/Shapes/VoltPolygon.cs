@@ -149,7 +149,7 @@ namespace Volatile
         internal int countBody;
         #endregion
 
-        public VoltPolygon() : base("../../Assets/sprites.png")
+        public VoltPolygon() : base("../../Assets/spritessml.png")
         {
             this.Reset();
         }

@@ -170,7 +170,9 @@
     <Content Include="Assets\songPlaceholder.mp3" />
     <Content Include="Assets\OverlayBackground.png" />
     <Content Include="Assets\sprites.png" />
+    <Content Include="Assets\spritessml.png" />
     <Content Include="Assets\transparent.png" />
+    <Content Include="Assets\transparentsml.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\AmbientSounds\" />

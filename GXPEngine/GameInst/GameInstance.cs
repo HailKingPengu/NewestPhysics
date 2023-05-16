@@ -65,9 +65,9 @@ namespace GXPEngine.GameInst
         public GameInstance()
         {
 
-            background = new Sprite("../../Assets/GameBGBig.png");
-            AddChild(background);
-            background.scale = 1;
+            //background = new Sprite("../../Assets/GameBGBig.png");
+            //AddChild(background);
+            //background.scale = 1;
 
             physicsWorld = new VoltWorld();
 
@@ -162,14 +162,14 @@ namespace GXPEngine.GameInst
             AddChild(physicsWorld.CreateDynamicBody(new Vec2(1250, 102), 0, new VoltShape[] { u }));
 
 
-            //var door = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -220), new Vec2(-25, 220), new Vec2(25, 220), new Vec2(25, -220) },2);
-            //AddChild(physicsWorld.CreateStaticBody(new Vec2(1300, 750), 0, new VoltShape[] { door }));
-            //MovingDoorController doorController = new MovingDoorController(door.Body, new Vec2(0, -200), 1000);
-            //door.AddChild(doorController);
+            var door = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-25, -220), new Vec2(-25, 220), new Vec2(25, 220), new Vec2(25, -220) }, 2);
+            AddChild(physicsWorld.CreateStaticBody(new Vec2(1300, 750), 0, new VoltShape[] { door }));
+            MovingDoorController doorController = new MovingDoorController(door.Body, new Vec2(0, -200), 1000);
+            door.AddChild(doorController);
 
-            var button = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-80, -10), new Vec2(-80, 10), new Vec2(80, 10), new Vec2(80, -10) },0);
+            var button = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-80, -10), new Vec2(-80, 10), new Vec2(80, 10), new Vec2(80, -10) }, 0);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(1600, 500), 0, new VoltShape[] { button }));
-            //button.AddChild(new ButtonController(button.Body, doorController));
+            button.AddChild(new ButtonController(button.Body, doorController));
 
             //var f = physicsWorld.CreateCircleWorldSpace(new Vec2(600, 200), 20);
             //AddChild(physicsWorld.CreateStaticBody(new Vec2(600, 200), 0, new VoltShape[] { f }));
@@ -191,11 +191,11 @@ namespace GXPEngine.GameInst
 
 
 
-            AAAs = new VoltPolygon[20];
+            AAAs = new VoltPolygon[3];
 
             List<HeatComponent> components = new List<HeatComponent>();
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 3; i++)
             {
 
                 float size = Utils.Random(30, 30);

@@ -87,7 +87,7 @@ namespace GXPEngine.GameInst
                 if (Input.GetMouseButton(0) && !aiming)
                 {
                     if (new Vec2(playerBody.LinearVelocity.x, 0).length < 30)
-                        playerBody.AddForce(new Vec2(Mathf.Clamp((mousePos.x - playerPos.x) / 5, -10, 10), 0));
+                        playerBody.AddForce(new Vec2(Mathf.Clamp((mousePos.x - playerPos.x) / 5, -15, 15), 0));
                 }
                 else
                 {

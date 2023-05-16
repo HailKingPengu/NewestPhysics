@@ -39,7 +39,7 @@ namespace GXPEngine.GameInst
                 }
             }
 
-            if (pos.LinearVelocity.x > 0.01 || pos.LinearVelocity.x < -0.01)
+            if (pos.LinearVelocity.x > 1 || pos.LinearVelocity.x < -1)
             {
                 SetCycle(0, 18, 5);
             }
