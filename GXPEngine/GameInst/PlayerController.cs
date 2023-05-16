@@ -26,6 +26,8 @@ namespace GXPEngine.GameInst
 
         float offsetX;
 
+        bool left;
+
         public PlayerController(VoltWorld physicsWorld, GameInstance gameInstance)
         {
 

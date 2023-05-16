@@ -12,7 +12,9 @@ namespace GXPEngine.GameInst
 
         VoltBody pos;
 
-        public PlayerSprite(string image, VoltBody pos) : base(image, 1, 1)
+        PlayerController playerController;
+
+        public PlayerSprite(string image, VoltBody pos) : base(image, 6, 5)
         {
             SetOrigin(width / 2, height / 2 + 15);
 
@@ -26,6 +28,29 @@ namespace GXPEngine.GameInst
 
         void Update()
         {
+            if(playerController == null)
+            {
+                foreach(GameObject obj in pos.parent.GetChildren())
+                {
+                    if(obj is PlayerController controller)
+                    {
+                        playerController = controller;
+                    }
+                }
+            }
+
+            if (pos.LinearVelocity.x > 0.01 || pos.LinearVelocity.x < -0.01)
+            {
+                SetCycle(0, 18, 5);
+            }
+            else 
+            {
+                SetCycle(18, 11, 5); 
+            }
+
+
+            Mirror(pos.LinearVelocity.x < 0, false);
+            AnimateFixed();
             SetXY(pos.x, pos.y);
         }
     }
