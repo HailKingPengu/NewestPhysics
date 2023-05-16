@@ -186,7 +186,7 @@ namespace GXPEngine.GameInst
             var c = physicsWorld.CreatePolygonBodySpace(new Vec2[] { new Vec2(-90, -20), new Vec2(-90, 20), new Vec2(90, 20), new Vec2(90, -20) }, 2);
             AddChild(physicsWorld.CreateStaticBody(new Vec2(1240, 350), 0, new VoltShape[] { c }));
 
-            playerSprite = new PlayerSprite("../../Assets/freg.png", playerBody);
+            playerSprite = new PlayerSprite("../../Assets/Spritesheet_dragon_walking_idle.png", playerBody);
             AddChild(playerSprite);
 
 
